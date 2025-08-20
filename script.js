@@ -65,3 +65,13 @@ if (hamburger && navLinksList) {
     }
   });
 }
+
+// Added: Faster staggered appearance animation for cards with 0.5s stagger
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('main > section'); // adjust the selector if necessary
+  cards.forEach((card, i) => {
+    setTimeout(() => {
+      card.classList.add('visible');
+    }, i * 500);  // 0.5 second delay between cards
+  });
+});
