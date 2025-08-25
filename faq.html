@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ | Stackly Legal Experts</title>
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Merriweather:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('assets/images/body-background.jpg') center center / cover no-repeat fixed;
+      color: #222;
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(45px) scale(0.98);}
+      80% { opacity: 1;}
+      100% { opacity: 1; transform: translateY(0) scale(1);}
+    }
+    .faq-hero,
+    .image-overlay,
+    .faq-section,
+    .cta-section {
+      animation: fadeSlideUp 1.1s cubic-bezier(.25,.8,.69,1.06) both;
+    }
+    .faq-hero { animation-delay: .08s;}
+    .image-overlay { animation-delay: .15s;}
+    .faq-section { animation-delay: .3s;}
+    .cta-section { animation-delay: .45s;}
+
+    main {
+      max-width: 1200px;
+      margin: 4rem auto 5rem;
+      background: rgba(255,255,255,0.97);
+      border-radius: 18px;
+      box-shadow: 0 20px 65px rgba(45,70,120,0.15);
+      overflow: hidden;
+      padding: 0;
+    }
+
+    /* Hero Section */
+    .faq-hero {
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(40,65,111,0.91) 64%, rgba(75,101,132,0.8) 100%),
+        url('https://images.pexels.com/photos/4427615/pexels-photo-4427615.jpeg?auto=compress&w=1200&q=80') center center / cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem 2rem 2rem;
+      box-shadow: 0 14px 40px rgba(40,65,111,0.18);
+    }
+    .faq-hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.54rem;
+      font-weight: 900;
+      margin-bottom: 0.7rem;
+      letter-spacing: .02em;
+      text-shadow: 1px 2px 20px rgba(30,60,100,0.32);
+    }
+    .faq-hero p {
+      font-size: 1.18rem;
+      font-weight: 500;
+      max-width: 700px;
+      margin: 0 auto 1.3rem auto;
+      letter-spacing: .006em;
+      text-shadow: 0 1px 10px rgba(40,65,111,0.12);
+    }
+    .hero-img {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 13px;
+      margin: 2.7rem auto 1.5rem auto;
+      box-shadow: 0 8px 32px rgba(44,74,121,0.18);
+      display: block;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .hero-img:hover,
+    .hero-img:focus {
+      transform: scale(1.03);
+      box-shadow: 0 15px 48px rgba(44,74,121,0.35);
+      outline: none;
+    }
+
+    /* Image overlay wrapper with subtle background color & pattern */
+    .image-overlay {
+      position: relative;
+      max-width: 420px;
+      margin: 2rem auto 2rem auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(44,74,121,0.18);
+      overflow: hidden;
+      z-index: 1;
+      background-color: rgba(40, 65, 111, 0.07);
+      background:
+        linear-gradient(135deg, rgba(40,65,111,0.35) 35%, rgba(75,101,132,0.25) 100%);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+    .image-overlay:hover,
+    .image-overlay:focus-within {
+      background:
+        linear-gradient(135deg, rgba(40,65,111,0.45) 35%, rgba(75,101,132,0.35) 100%);
+      box-shadow: 0 15px 50px rgba(44,74,121,0.35);
+      transform: scale(1.04);
+      outline: none;
+    }
+    .image-overlay img {
+      position: relative;
+      display: block;
+      width: 100%;
+      border-radius: 16px;
+      max-width: 420px;
+      box-shadow: 0 8px 30px rgba(44,74,121,0.15);
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.8rem 3rem 1.8rem;
+    }
+    .faq-list {
+      max-width: 700px;
+      width: 100%;
+    }
+    .faq-item {
+      background: #f6f9fc;
+      border-radius: 18px;
+      box-shadow: 0 6px 22px rgba(44,74,121,0.08);
+      margin-bottom: 1.5rem;
+      padding: 1.3rem 1.2rem 0.3rem 1.2rem;
+      cursor: pointer;
+      user-select: none;
+      transition: box-shadow 0.35s ease, background 0.28s ease;
+      position: relative;
+    }
+    .faq-item:hover,
+    .faq-item:focus-within {
+      box-shadow: 0 18px 42px rgba(1,119,198,0.2);
+      background: #e7f1ff;
+      outline: none;
+    }
+    .faq-item.active {
+      background: #d4e4ff;
+      box-shadow: 0 22px 48px rgba(1,119,198,0.3);
+      outline: none;
+    }
+    .faq-question {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #224270;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      outline: none;
+    }
+    .faq-question:hover,
+    .faq-item.active .faq-question {
+      color: #0277f7;
+    }
+    .faq-icon {
+      font-size: 1.3rem;
+      color: #0277f7;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 0px 3px #b9d8f8);
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg) scale(1.15);
+      color: #003c72;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      font-size: 1.05rem;
+      color: #444;
+      transition: max-height 0.55s cubic-bezier(.4,0,.2,1), padding 0.3s;
+      padding: 0 0;
+      opacity: 0;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 850px;
+      padding: 1rem 0 0.9rem 0;
+      opacity: 1;
+      animation: fadeSlideUp 0.5s ease both;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(90deg, #213f79 60%, #607ccb);
+      color: #fff;
+      border-radius: 18px;
+      text-align: center;
+      margin: 3rem 3rem 3rem 3rem;
+      padding: 3rem 2.5rem 2.5rem 2.5rem;
+      font-family: 'Merriweather', serif;
+      box-shadow: 0 15px 46px rgba(1,119,198,0.26);
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .cta-section:hover {
+      box-shadow: 0 20px 70px rgba(1,119,198,0.44);
+    }
+    .cta-section h2 {
+      font-size: 1.72rem;
+      font-weight: 900;
+      margin-bottom: 1.2rem;
+    }
+    .cta-section p {
+      font-size: 1.17rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      color: #224270;
+      background: #fff;
+      font-weight: 700;
+      border-radius: 46px;
+      font-size: 1.14rem;
+      padding: 0.9em 2.8em;
+      text-decoration: none;
+      box-shadow: 0 10px 34px rgba(40,65,111,0.25);
+      user-select: none;
+      transition: transform 0.2s, box-shadow 0.3s;
+      display: inline-block;
+    }
+    .cta-btn:hover,
+    .cta-btn:focus {
+      background: #224270;
+      color: #fff;
+      box-shadow: 0 18px 54px rgba(1,63,112,0.6);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      main { margin: 2rem auto; max-width: 96vw; }
+      .faq-hero { padding: 2rem 1rem 1.1rem; }
+      .hero-img, .image-overlay img { max-width: 100%; }
+      .image-overlay { max-width: 100%; margin: 1.5rem auto; }
+      .faq-section { padding: 1.8rem 1.2rem 2.2rem; }
+      .cta-section { margin: 2rem 1rem; padding: 2rem 1.8rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="index.html" class="logo" aria-label="Stackly Home">
+        <img src="assets/logo/logo.png" alt="Stackly logo" style="height:40px;" />
+        <span class="brand-name">Stackly</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="faq.html" aria-current="page">FAQ</a></li>
+        <li><a href="404.html">Blog</a></li>
+        <li><a href="404.html">Contact</a></li>
+        <li><a href="404.html">Buy Now</a></li>
+        <li><a href="#" class="login-btn" role="button">Login/Register</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="faq-hero" role="banner" aria-label="FAQ Overview">
+      <h1>Frequently Asked Questions</h1>
+      <p>Find quick answers to the most common questions our clients ask about Stackly’s legal services.</p>
+      <img src="https://images.pexels.com/photos/4427615/pexels-photo-4427615.jpeg?auto=compress&w=900&q=80"
+           alt="Law books and gavels on table" class="hero-img" />
+    </section>
+
+    <!-- Decorative Image Section 1 -->
+    <div class="image-overlay" aria-hidden="true">
+      <img src="https://images.pexels.com/photos/5668470/pexels-photo-5668470.jpeg?auto=compress&w=900&q=80"
+           alt="Modern law office with scales" />
+    </div>
+
+    <!-- FAQ Accordion Card Style -->
+    <section class="faq-section" aria-label="Frequently Asked Questions">
+      <div class="faq-list" role="list">
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" tabindex="0" aria-expanded="false" aria-controls="faq1" id="faq1-label">
+            <span>What areas of law does Stackly specialize in?</span>
+            <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-label">
+            <p>Stackly provides expertise in corporate, commercial, real estate, litigation, immigration, compliance, and notarial services, ensuring full legal coverage for our clients.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" tabindex="0" aria-expanded="false" aria-controls="faq2" id="faq2-label">
+            <span>How can I schedule a consultation?</span>
+            <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-label">
+            <p>You can schedule a consultation through our contact page or by emailing us directly at <a href="mailto:info@stackly.com">info@stackly.com</a>.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" tabindex="0" aria-expanded="false" aria-controls="faq3" id="faq3-label">
+            <span>Do you offer international legal services?</span>
+            <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-label">
+            <p>Yes, we provide cross-border legal solutions including immigration, residency, and multinational corporate compliance.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <div class="faq-question" tabindex="0" aria-expanded="false" aria-controls="faq4" id="faq4-label">
+            <span>Are your consultations confidential?</span>
+            <i class="fas fa-chevron-down faq-icon" aria-hidden="true"></i>
+          </div>
+          <div class="faq-answer" id="faq4" role="region" aria-labelledby="faq4-label">
+            <p>Absolutely. All consultations are 100% confidential and handled with the highest ethical standards of client privacy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Decorative Image Section 2 -->
+    <div class="image-overlay" style="margin-bottom: 40px;" aria-hidden="true">
+      <img src="https://images.pexels.com/photos/6078111/pexels-photo-6078111.jpeg?auto=compress&w=900&q=80"
+           alt="Law team collaboration" />
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section" role="region" aria-label="Contact Call to Action">
+      <h2>Still Have Questions?</h2>
+      <p>Reach out to our team for personalized support and expert legal guidance tailored to your situation.</p>
+      <a href="contact.html" class="cta-btn">Contact Us</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Stackly. All rights reserved.</p>
+    <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+    <div class="social-icons" aria-label="Social Media Links">
+      <a href="mailto:info@stackly.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/your-profile" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://twitter.com/your-profile" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://facebook.com/your-profile" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/your-profile" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ Accordion with ARIA and keyboard support
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isActive = item.classList.toggle('active');
+        question.setAttribute('aria-expanded', isActive);
+
+        // Close others for single-open accordion effect
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if(other !== item){
+            other.classList.remove('active');
+            other.querySelector('.faq-question').setAttribute('aria-expanded', false);
+          }
+        });
+      });
+      question.addEventListener('keypress', (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          question.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
