@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog | Stackly Insights & Updates</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Merriweather:400,700&display=swap" rel="stylesheet" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+<!-- Main stylesheet -->
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  html, body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0; padding: 0;
+    background: url('assets/images/body-background.jpg') center center / cover no-repeat fixed;
+    color: var(--text, #222);
+    min-height: 100vh;
+  }
+  main {
+    max-width: 1000px;
+    margin: 4rem auto;
+    background: rgba(255,255,255,0.95);
+    border-radius: 14px;
+    box-shadow: 0 16px 48px rgba(40,65,111,0.12);
+    overflow: hidden;
+    padding: 2rem;
+  }
+  .blog-hero {
+    background: linear-gradient(135deg, rgba(40,65,111,0.93) 55%, rgba(75,101,132,0.7) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 2rem 2.5rem 2rem;
+  }
+  .blog-hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: .7rem;
+    letter-spacing: 0.03em;
+  }
+  .blog-hero p {
+    max-width: 700px;
+    margin: 0 auto 1.5rem auto;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: .01em;
+  }
+  
+  .blog-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-top: 2rem;
+  }
+  
+  .blog-card {
+    background: #f8fafc;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(44, 74, 121, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.25s ease;
+    min-height: 370px;
+  }
+  .blog-card:hover,
+  .blog-card:focus-within {
+    box-shadow: 0 18px 38px rgba(38, 87, 149, 0.25);
+    transform: translateY(-6px);
+    outline: none;
+  }
+  .blog-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 4px solid #28416f;
+  }
+  .blog-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .blog-date {
+    font-size: 0.9rem;
+    color: #5c6b84;
+    margin-bottom: 0.7rem;
+  }
+  .blog-tags {
+    color: #0185f6;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .blog-title {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #28416f;
+    margin-bottom: 0.6rem;
+  }
+  .blog-excerpt {
+    font-size: 1rem;
+    color: #3b475f;
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+  }
+  .blog-readmore {
+    display: inline-block;
+    background: #28416f;
+    color: white;
+    font-weight: 600;
+    padding: 0.55em 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 6px 22px rgba(40,65,111,0.3);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .blog-readmore:hover,
+  .blog-readmore:focus {
+    background: #0197f6;
+    outline: none;
+  }
+  
+  /* Responsive for narrower screens */
+  @media (max-width: 960px) {
+    .blog-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .blog-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header from about.html -->
+<header>
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="Stackly Home">
+      <img src="assets/logo/logo.png" alt="Stackly logo" style="height:40px;" />
+      <span class="brand-name">Stackly</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="404.html">Blog</a></li>
+      <li><a href="404.html">Contact</a></li>
+      <li><a href="404.html">Buy Now</a></li>
+      <li><a href="#" class="login-btn" role="button" tabindex="0">Login/Register</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="blog-hero" role="banner" aria-label="Blog introduction">
+    <h1>Insights & Legal Updates</h1>
+    <p>Stay informed with the latest articles, client tips, and legal industry news from the Stackly team.</p>
+  </section>
+
+  <section class="blog-list" aria-label="Blog article cards">
+    <!-- Article cards -->
+    <article class="blog-card" tabindex="0" role="article" aria-label="Emerging Litigation Trends for 2025">
+      <img src="https://images.pexels.com/photos/6078128/pexels-photo-6078128.jpeg?auto=compress&w=900&q=80" alt="Legal research" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">August 25, 2025 • By Anna George</div>
+        <div class="blog-tags">#Litigation #LegalTrends</div>
+        <h2 class="blog-title">Emerging Litigation Trends for 2025</h2>
+        <p class="blog-excerpt">Explore AI-led court filings, remote hearings, and new case management standards shaping litigation today.</p>
+        <a href="blog-post.html?id=1" class="blog-readmore" aria-label="Read more about Emerging Litigation Trends for 2025">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="How to Prepare for Your Legal Consultation">
+      <img src="https://images.pexels.com/photos/6078124/pexels-photo-6078124.jpeg?auto=compress&w=900&q=80" alt="Law consultation" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">August 19, 2025 • By Ramesh Kumar</div>
+        <div class="blog-tags">#Clients #LegalAdvice</div>
+        <h2 class="blog-title">How to Prepare for Your Legal Consultation</h2>
+        <p class="blog-excerpt">Get the most from your first meeting with a lawyer—questions to ask, documents to ready, and what to expect for an effective session.</p>
+        <a href="blog-post.html?id=2" class="blog-readmore" aria-label="Read more about How to Prepare for Your Legal Consultation">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="Stackly Honored as Diversity Champion">
+      <img src="https://images.pexels.com/photos/5668477/pexels-photo-5668477.jpeg?auto=compress&w=900&q=80" alt="Law office team" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">August 10, 2025 • By Leela Devi</div>
+        <div class="blog-tags">#FirmNews #Community</div>
+        <h2 class="blog-title">Stackly Honored as Diversity Champion</h2>
+        <p class="blog-excerpt">Our legal training, diversity hiring, and community outreach have been nationally recognized. See how we’re making an impact.</p>
+        <a href="blog-post.html?id=3" class="blog-readmore" aria-label="Read more about Stackly Honored as Diversity Champion">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="Legal Tech: The Next Frontier">
+      <img src="https://images.pexels.com/photos/6078115/pexels-photo-6078115.jpeg?auto=compress&w=900&q=80" alt="Modern law technology" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">July 29, 2025 • By Guest Author</div>
+        <div class="blog-tags">#Tech #Innovation</div>
+        <h2 class="blog-title">Legal Tech: The Next Frontier</h2>
+        <p class="blog-excerpt">Smart contracts, e-discovery & blockchain are transforming legal services – here’s what clients should expect next.</p>
+        <a href="blog-post.html?id=4" class="blog-readmore" aria-label="Read more about Legal Tech: The Next Frontier">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="Business Contract Essentials">
+      <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&w=900&q=80" alt="Business contract signing" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">July 20, 2025 • By Sarah Lee</div>
+        <div class="blog-tags">#Contracts #BusinessLaw</div>
+        <h2 class="blog-title">Business Contract Essentials</h2>
+        <p class="blog-excerpt">Understand key contract elements every business owner should know before signing to protect your interests.</p>
+        <a href="blog-post.html?id=5" class="blog-readmore" aria-label="Read more about Business Contract Essentials">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="Understanding Immigration Laws in 2025">
+      <img src="https://images.pexels.com/photos/461077/pexels-photo-461077.jpeg?auto=compress&w=900&q=80" alt="Immigration document" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">July 10, 2025 • By Miguel Santos</div>
+        <div class="blog-tags">#Immigration #LegalUpdate</div>
+        <h2 class="blog-title">Understanding Immigration Laws in 2025</h2>
+        <p class="blog-excerpt">Learn about the latest changes in immigration law and how they may affect your visa applications or residency status.</p>
+        <a href="blog-post.html?id=6" class="blog-readmore" aria-label="Read more about Understanding Immigration Laws in 2025">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="Protecting Intellectual Property Rights">
+      <img src="https://images.pexels.com/photos/267614/pexels-photo-267614.jpeg?auto=compress&w=900&q=80" alt="Patent or trademark document" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">June 28, 2025 • By Priya Desai</div>
+        <div class="blog-tags">#IntellectualProperty #Patents</div>
+        <h2 class="blog-title">Protecting Intellectual Property Rights</h2>
+        <p class="blog-excerpt">An overview of IP rights protection mechanisms and how businesses can safeguard patents and trademarks.</p>
+        <a href="blog-post.html?id=7" class="blog-readmore" aria-label="Read more about Protecting Intellectual Property Rights">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="Navigating Family Law Disputes">
+      <img src="https://images.pexels.com/photos/3706561/pexels-photo-3706561.jpeg?auto=compress&w=900&q=80" alt="Family law consultation" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">June 15, 2025 • By Emily Carter</div>
+        <div class="blog-tags">#FamilyLaw #Mediation</div>
+        <h2 class="blog-title">Navigating Family Law Disputes</h2>
+        <p class="blog-excerpt">How mediation and legal counsel can help resolve family-related legal conflicts more effectively and amicably.</p>
+        <a href="blog-post.html?id=8" class="blog-readmore" aria-label="Read more about Navigating Family Law Disputes">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card" tabindex="0" role="article" aria-label="Data Privacy and Compliance in 2025">
+      <img src="https://images.pexels.com/photos/267612/pexels-photo-267612.jpeg?auto=compress&w=900&q=80" alt="Data privacy compliance" class="blog-img" />
+      <div class="blog-content">
+        <div class="blog-date">June 5, 2025 • By Jonathan Baker</div>
+        <div class="blog-tags">#Privacy #Compliance</div>
+        <h2 class="blog-title">Data Privacy and Compliance in 2025</h2>
+        <p class="blog-excerpt">The evolving regulations and what businesses must do to comply with privacy laws in a digital-first world.</p>
+        <a href="blog-post.html?id=9" class="blog-readmore" aria-label="Read more about Data Privacy and Compliance in 2025">Read More</a>
+      </div>
+    </article>
+  </section>
+</div>
+</main>
+
+<!-- Footer from about.html -->
+<footer>
+  <p>&copy; 2025 Stackly. All rights reserved.</p>
+  <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+  <div class="social-icons" aria-label="Social Media Links">
+    <a href="mailto:info@stackly.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/your-profile" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://twitter.com/your-profile" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com/your-profile" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com/your-profile" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog Post | Stackly Insights & Updates</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Merriweather:400,700&display=swap" rel="stylesheet" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+<!-- Main stylesheet -->
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  html, body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0; padding: 0;
+    background: url('assets/images/body-background.jpg') center center / cover no-repeat fixed;
+    color: var(--text, #222);
+    min-height: 100vh;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 2rem auto 4rem auto;
+    background: rgba(255,255,255,0.95);
+    border-radius: 14px;
+    box-shadow: 0 16px 48px rgba(40,65,111,0.12);
+    padding: 2.5rem 3rem;
+  }
+
+  .post-hero {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .post-hero h1 {
+    font-family: 'Merriweather', serif;
+    font-weight: 800;
+    font-size: 2.75rem;
+    color: #28416f;
+    margin-bottom: 0.3rem;
+  }
+  .post-meta {
+    color: #5c6b84;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  .post-tags {
+    color: #0185f6;
+    font-weight: 600;
+  }
+  .post-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 18px rgba(40,65,111,0.15);
+  }
+  .post-content {
+    font-size: 1.1rem;
+    line-height: 1.7em;
+    color: #3b475f;
+  }
+  .post-content p {
+    margin-bottom: 1.4rem;
+  }
+  .post-content strong {
+    color: #28416f;
+  }
+
+  /* Link back to blog */
+  .back-link {
+    display: inline-block;
+    margin-top: 3rem;
+    background: #28416f;
+    color: white;
+    font-weight: 600;
+    padding: 0.55em 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 6px 22px rgba(40,65,111,0.3);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .back-link:hover,
+  .back-link:focus {
+    background: #0197f6;
+    outline: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    main {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+    .post-hero h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header from blog.html -->
+<header>
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="Stackly Home">
+      <img src="assets/logo/logo.png" alt="Stackly logo" style="height:40px;" />
+      <span class="brand-name">Stackly</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="blog.html" aria-current="page">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="buy.html">Buy Now</a></li>
+      <li><a href="#" class="login-btn" role="button" tabindex="0">Login/Register</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main role="main" aria-labelledby="post-title">
+
+  <section id="post-container" aria-live="polite" aria-atomic="true">
+    <!-- Article detail injected by JS -->
+    <div class="post-hero">
+      <h1 id="post-title">Loading article...</h1>
+      <div class="post-meta" id="post-meta"></div>
+      <div class="post-tags" id="post-tags"></div>
+    </div>
+    <img id="post-image" src="" alt="" class="post-image" />
+    <article class="post-content" id="post-content">
+      <p>Please wait while the article loads.</p>
+    </article>
+  </section>
+
+  <a href="blog.html" class="back-link" aria-label="Back to Blog List">&larr; Back to Blog</a>
+</main>
+
+<!-- Footer from blog.html -->
+<footer>
+  <p>&copy; 2025 Stackly. All rights reserved.</p>
+  <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+  <div class="social-icons" aria-label="Social Media Links">
+    <a href="mailto:info@stackly.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/your-profile" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://twitter.com/your-profile" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com/your-profile" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com/your-profile" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+<script>
+  const articles = {
+    1: {
+      title: "Emerging Litigation Trends for 2025",
+      author: "Anna George",
+      date: "August 25, 2025",
+      tags: ["Litigation", "LegalTrends"],
+      image: "https://images.pexels.com/photos/6078128/pexels-photo-6078128.jpeg?auto=compress&w=1200&q=90",
+      alt: "Legal research",
+      fullContent: `
+        <p>The legal landscape in 2025 is rapidly evolving, especially in the field of litigation. Artificial intelligence is now assisting with court filings, document analysis, and predictive modeling for case outcomes.</p>
+        <p>Remote hearings have become standard practice, making access to justice more efficient and accessible. This shift has also led to new case management standards which promote transparency and accountability.</p>
+        <p><strong>Key highlights include:</strong></p>
+        <ul>
+          <li>AI-powered automated filings reducing human error.</li>
+          <li>Virtual courtroom integration leveraging secure video conferencing.</li>
+          <li>Enhanced data analytics improving legal strategy and client counsel.</li>
+        </ul>
+        <p>Law firms must adapt to these trends to maintain competitiveness and deliver better client outcomes.</p>
+      `
+    },
+    2: {
+      title: "How to Prepare for Your Legal Consultation",
+      author: "Ramesh Kumar",
+      date: "August 19, 2025",
+      tags: ["Clients", "LegalAdvice"],
+      image: "https://images.pexels.com/photos/6078124/pexels-photo-6078124.jpeg?auto=compress&w=1200&q=90",
+      alt: "Law consultation",
+      fullContent: `
+        <p>Preparing well for your first legal consultation can save time, reduce stress, and improve results. Here are some tips to help you get ready:</p>
+        <ol>
+          <li>Gather all relevant documents related to your case or issue.</li>
+          <li>Write down a clear summary of your situation, questions, and concerns.</li>
+          <li>Be ready to discuss your goals and what you hope to achieve through legal service.</li>
+          <li>Understand fee structures and payment options by asking right away.</li>
+        </ol>
+        <p>Effective communication and organization during your consultation will help your lawyer assist you efficiently and effectively.</p>
+      `
+    },
+    3: {
+      title: "Stackly Honored as Diversity Champion",
+      author: "Leela Devi",
+      date: "August 10, 2025",
+      tags: ["FirmNews", "Community"],
+      image: "https://images.pexels.com/photos/5668477/pexels-photo-5668477.jpeg?auto=compress&w=1200&q=90",
+      alt: "Law office team",
+      fullContent: `
+        <p>Stackly is proud to be nationally recognized as a Diversity Champion, an honor celebrating our commitment to inclusive hiring, fair legal training, and active community outreach programs.</p>
+        <p>We believe a diverse team enriches perspectives, enhances innovation, and provides stronger advocacy for our clients.</p>
+        <p>Our ongoing programs ensure opportunities for underrepresented groups in the legal profession, and we support local community initiatives for justice and equality.</p>
+      `
+    },
+    4: {
+      title: "Legal Tech: The Next Frontier",
+      author: "Guest Author",
+      date: "July 29, 2025",
+      tags: ["Tech", "Innovation"],
+      image: "https://images.pexels.com/photos/6078115/pexels-photo-6078115.jpeg?auto=compress&w=1200&q=90",
+      alt: "Modern law technology",
+      fullContent: `
+        <p>Technology is transforming legal services in leaps and bounds. Smart contracts are automating agreements, e-discovery tools streamline document review, and blockchain enhances security and transparency.</p>
+        <p>Clients can expect smoother interactions and faster case resolutions, but law firms must invest in technology and training to stay ahead.</p>
+        <p>Innovation in this space continues to evolve, promising more efficient, client-centered legal practices.</p>
+      `
+    },
+    5: {
+      title: "Business Contract Essentials",
+      author: "Sarah Lee",
+      date: "July 20, 2025",
+      tags: ["Contracts", "BusinessLaw"],
+      image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&w=1200&q=90",
+      alt: "Business contract signing",
+      fullContent: `
+        <p>Every business contract holds critical terms designed to protect your interests and define your obligations.</p>
+        <p>Before signing, ensure you understand:</p>
+        <ul>
+          <li>Scope of work or services provided</li>
+          <li>Payment terms and schedules</li>
+          <li>Liability and indemnification clauses</li>
+          <li>Termination conditions and dispute resolution mechanisms</li>
+        </ul>
+        <p>Careful review and sometimes legal advice on contracts helps avoid costly disputes and fosters trust in business relationships.</p>
+      `
+    },
+    6: {
+      title: "Understanding Immigration Laws in 2025",
+      author: "Miguel Santos",
+      date: "July 10, 2025",
+      tags: ["Immigration", "LegalUpdate"],
+      image: "https://images.pexels.com/photos/461077/pexels-photo-461077.jpeg?auto=compress&w=1200&q=90",
+      alt: "Immigration document",
+      fullContent: `
+        <p>The immigration landscape has seen significant changes in 2025, with new visa categories and updated application procedures.</p>
+        <p>Applicants should be aware of revised eligibility criteria, processing timelines, and documentation requirements to improve chances of success.</p>
+        <p>Legal professionals continue to guide clients navigating these evolving laws to ensure lawful status and protection of rights.</p>
+      `
+    },
+    7: {
+      title: "Protecting Intellectual Property Rights",
+      author: "Priya Desai",
+      date: "June 28, 2025",
+      tags: ["IntellectualProperty", "Patents"],
+      image: "https://images.pexels.com/photos/267614/pexels-photo-267614.jpeg?auto=compress&w=1200&q=90",
+      alt: "Patent or trademark document",
+      fullContent: `
+        <p>Protecting intellectual property (IP) is essential for innovation and competitive advantage.</p>
+        <p>This overview covers patents, trademarks, copyrights, and trade secrets, explaining how businesses can safeguard their assets through proper registration and enforcement.</p>
+        <p>Consult a legal expert to develop an IP protection strategy tailored to your goals.</p>
+      `
+    },
+    8: {
+      title: "Navigating Family Law Disputes",
+      author: "Emily Carter",
+      date: "June 15, 2025",
+      tags: ["FamilyLaw", "Mediation"],
+      image: "https://images.pexels.com/photos/3706561/pexels-photo-3706561.jpeg?auto=compress&w=1200&q=90",
+      alt: "Family law consultation",
+      fullContent: `
+        <p>Family law disputes can be emotionally challenging. Mediation offers a way to resolve conflicts amicably and with confidentiality.</p>
+        <p>Legal counsel plays a crucial role in guiding clients on rights, custody agreements, and support matters.</p>
+        <p>Understanding alternatives to litigation can save time, reduce costs, and foster healthier post-dispute relationships.</p>
+      `
+    },
+    9: {
+      title: "Data Privacy and Compliance in 2025",
+      author: "Jonathan Baker",
+      date: "June 5, 2025",
+      tags: ["Privacy", "Compliance"],
+      image: "https://images.pexels.com/photos/267612/pexels-photo-267612.jpeg?auto=compress&w=1200&q=90",
+      alt: "Data privacy compliance",
+      fullContent: `
+        <p>The landscape of data privacy is rapidly evolving, with stricter regulations worldwide affecting how businesses collect, store, and use personal information.</p>
+        <p>Compliance programs must include clear policies, employee training, and audit mechanisms to mitigate risk and protect consumer rights.</p>
+        <p>Failure to comply can lead to severe penalties and reputational harm, making privacy a priority in digital business strategies.</p>
+      `
+    }
+  };
+
+  function getArticleIdFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    return id ? parseInt(id, 10) : null;
+  }
+
+  function escapeHtml(text) {
+    if (!text) return "";
+    return text.replace(/&/g, "&amp;")
+               .replace(/</g, "&lt;")
+               .replace(/>/g, "&gt;")
+               .replace(/"/g, "&quot;")
+               .replace(/'/g, "&#039;");
+  }
+
+  function renderArticle(article) {
+    const titleEl = document.getElementById("post-title");
+    const metaEl = document.getElementById("post-meta");
+    const tagsEl = document.getElementById("post-tags");
+    const imageEl = document.getElementById("post-image");
+    const contentEl = document.getElementById("post-content");
+
+    titleEl.textContent = article.title;
+    metaEl.textContent = `${article.date} • By ${article.author}`;
+    tagsEl.textContent = article.tags.map(tag => `#${tag}`).join(" ");
+    imageEl.src = article.image;
+    imageEl.alt = escapeHtml(article.alt);
+    contentEl.innerHTML = article.fullContent;
+  }
+
+  function showError() {
+    const container = document.getElementById("post-container");
+    container.innerHTML = `
+      <div role="alert" style="text-align:center; color:#c00; padding: 3rem 1rem;">
+        <h2>Article Not Found</h2>
+        <p>Sorry, the article you are looking for does not exist or has been removed.</p>
+        <a href="blog.html" class="back-link" aria-label="Back to Blog List">&larr; Back to Blog</a>
+      </div>
+    `;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const articleId = getArticleIdFromQuery();
+    if (articleId && articles[articleId]) {
+      renderArticle(articles[articleId]);
+    } else {
+      showError();
+    }
+  });
+</script>
+
+</body>
+</html>
