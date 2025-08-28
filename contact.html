@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Stackly Insights & Updates</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Merriweather:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0; padding: 0;
+      background: url('assets/images/body-background.jpg') center center / cover no-repeat fixed;
+      color: var(--text, #222);
+      min-height: 100vh;
+    }
+    main {
+      max-width: 950px;
+      margin: 3rem auto;
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(40,65,111,0.15);
+      overflow: hidden;
+      padding: 2.5rem;
+      position: relative;
+      animation: fadeInMain 1s cubic-bezier(.41,.8,.54,1) backwards;
+    }
+    @keyframes fadeInMain {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: none;}
+    }
+    .contact-hero-img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 36px rgba(40,65,111,0.18);
+      display: block;
+      margin-bottom: 2.2rem;
+      animation: fadeInImg 1.2s cubic-bezier(.41,.8,.54,1) backwards;
+    }
+    @keyframes fadeInImg {
+      from { opacity: 0; transform: scale(.97);}
+      to { opacity: 1; transform: none;}
+    }
+    .contact-hero {
+      text-align: center;
+      margin-bottom: 2rem;
+      background-color: #28416f;
+      color: white;
+      border-radius: 14px;
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      box-shadow: 0 10px 30px rgba(40,65,111,0.2);
+    }
+    .contact-hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.45rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.6rem;
+      letter-spacing: .04em;
+    }
+    .contact-hero p {
+      font-size: 1.16rem;
+      font-weight: 500;
+      color: white;
+    }
+    .contact-details {
+      margin-bottom: 2.5rem;
+      text-align: center;
+      color: #28416f;
+      font-size: 1.14rem;
+      font-weight: 500;
+    }
+    .contact-details div { 
+      margin: 0.8em;
+      line-height: 1.7;
+      letter-spacing: .01em;
+    }
+    .contact-details a {
+      color: #0185f6;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.25s;
+    }
+    .contact-details a:hover { color: #28416f; text-decoration: underline;}
+    .contact-form-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .contact-form {
+      flex: 1 1 350px;
+      background: #f8fafc;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px rgba(38,87,149,.09);
+      padding: 2rem;
+    }
+    .contact-form label {
+      font-weight: 600;
+      color: #28416f;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      border: 1px solid #ccd3dd;
+      border-radius: 9px;
+      padding: .9em;
+      font-size: 1em;
+      margin-bottom: 1.2rem;
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #0185f6;
+      outline: none;
+      box-shadow: 0 0 0 4px #0185f622;
+    }
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .contact-form button {
+      background: #28416f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 9px;
+      padding: 0.68em 2.1em;
+      box-shadow: 0 4px 18px rgba(40,65,111,0.17);
+      font-size: 1.08rem;
+      cursor: pointer;
+      transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+      letter-spacing: .03em;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-form button:hover, .contact-form button:focus {
+      background: #0185f6;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 12px 22px rgba(40,65,111,0.19);
+    }
+    @media (max-width: 600px) {
+      .contact-form-section {
+        flex-direction: column;
+        gap: 0;
+      }
+      .contact-form {
+        margin-bottom: 2rem;
+      }
+      .contact-hero-img {
+        max-height: 200px;
+      }
+      main {
+        padding: 1.3rem;
+      }
+    }
+
+    /* === Footer Styles (consistent with About & Blog pages) === */
+    footer {
+      background: #28416f;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .footer-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-links {
+      margin: 1rem 0;
+    }
+    .footer-links a {
+      color: #e0e5ed;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .footer-social-icons {
+      margin-top: 1rem;
+    }
+    .footer-social-icons a {
+      display: inline-block;
+      margin: 0 8px;
+      color: #28416f;
+      background: #fff;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      line-height: 42px;
+      font-size: 1.3rem;
+      transition: all 0.27s ease-in-out;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+    .footer-social-icons a:hover {
+      background: #0185f6;
+      color: #fff;
+      transform: scale(1.14);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="Stackly Home">
+      <img src="assets/logo/logo.png" alt="Stackly logo" style="height:40px;" />
+      <span class="brand-name">Stackly</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+      <li><a href="buy.html">Buy Now</a></li>
+      <li><a href="#" class="login-btn" role="button">Login/Register</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle Navigation"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+  <img src="https://images.pexels.com/photos/3182763/pexels-photo-3182763.jpeg?auto=compress&w=1200&q=80" alt="Contact communication workspace" class="contact-hero-img" />
+  <section class="contact-hero">
+    <h1>Contact Our Team</h1>
+    <p>Questions, quotes, partnerships, or feedback – we’d love to hear from you.<br />We usually reply within 1 business day.</p>
+  </section>
+  <div class="contact-details">
+    <div><strong>Email:</strong> <a href="mailto:info@stackly.com">info@stackly.com</a></div>
+    <div><strong>Phone:</strong> <a href="tel:+911234567890">+91 123 456 7890</a></div>
+    <div><strong>Address:</strong> 123, Legal Street, Salem, India</div>
+  </div>
+  <section class="contact-form-section">
+    <form class="contact-form" id="contactForm" autocomplete="on">
+      <label for="name">Your Name *</label>
+      <input type="text" id="name" name="name" required minlength="3" />
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" required />
+      <label for="subject">Subject *</label>
+      <input type="text" id="subject" name="subject" required minlength="5" />
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" required minlength="15"></textarea>
+      <button type="submit">Send Message</button>
+      <p id="formStatus" style="color:#0185f6;margin-top:1em;"></p>
+    </form>
+  </section>
+</main>
+
+<!-- ✅ Use the exact same footer from About/Blog! -->
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2025 Stackly. All rights reserved.</p>
+    <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+    <div class="social-icons" aria-label="Social Media Links">
+      <a href="mailto:info@stackly.com" aria-label="Email" target="_blank" rel="noopener"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/your-profile" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://twitter.com/your-profile" aria-label="Twitter" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+      <a href="https://facebook.com/your-profile" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/your-profile" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var status = document.getElementById('formStatus');
+  status.textContent = 'Thank you! Your message has been sent. We will reply soon.';
+  this.reset();
+});
+</script>
+</body>
+</html>
