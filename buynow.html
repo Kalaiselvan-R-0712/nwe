@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buy Now | Stackly Plans & Pricing</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Merriweather:400,700&display=swap" rel="stylesheet" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+<!-- Main stylesheet -->
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  html, body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0; padding: 0;
+    background: url('assets/images/body-background.jpg') center center / cover no-repeat fixed;
+    color: var(--text, #222);
+    min-height: 100vh;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 4rem auto 5rem;
+    background: rgba(255,255,255,0.95);
+    border-radius: 14px;
+    box-shadow: 0 16px 48px rgba(40,65,111,0.12);
+    overflow: hidden;
+    padding: 2.5rem 2rem;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+
+  .plans-hero {
+    text-align: center;
+    padding: 2.8rem 1.5rem 3rem;
+    background: linear-gradient(135deg, rgba(40,65,111,0.85) 55%, rgba(75,101,132,0.6) 100%);
+    color: #fff;
+    border-radius: 10px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 8px 28px rgba(38,87,149,0.18);
+    animation: slideDown 0.8s ease forwards;
+  }
+
+  .plans-hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.03em;
+  }
+
+  .plans-hero p {
+    font-size: 1.15rem;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+
+  @keyframes slideDown {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .plan-card {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 8px 24px rgba(44,74,121,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 48px rgba(38,87,149,0.25);
+  }
+
+  .plan-card::before {
+    content: '';
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(2,136,209,0.05);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .plan-card:hover::before {
+    opacity: 1;
+  }
+
+  .plan-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #28416f;
+  }
+
+  .plan-price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0197f6;
+    margin-bottom: 1rem;
+  }
+
+  .plan-details {
+    font-size: 1rem;
+    color: #3b475f;
+    margin-bottom: 1.5rem;
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  .plan-features li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.8rem;
+    font-weight: 500;
+  }
+
+  .plan-features li::before {
+    content: '\f00c';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left:0;
+    color: #0197f6;
+  }
+
+  .plan-btn {
+    display: inline-block;
+    background: #28416f;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.65em 2em;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .plan-btn:hover {
+    background: #0197f6;
+    transform: translateY(-3px);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
+    .plans-hero h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header remains same as existing page -->
+<header>
+  <nav class="navbar" aria-label="Main Navigation">
+    <a href="index.html" class="logo" aria-label="Stackly Home">
+      <img src="assets/logo/logo.png" alt="Stackly logo" style="height:40px;" />
+      <span class="brand-name">Stackly</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="buynow.html">Buy Now</a></li>
+        <li><a href="login.html" class="login-btn" role="button" tabindex="0">Login/Register</a></li>
+      </ul>
+    <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="plans-hero">
+    <h1>Choose Your Perfect Plan</h1>
+    <p>Select a plan that fits your needs. All plans come with our expert legal support and professional guidance.</p>
+  </section>
+
+  <!-- Plans Grid -->
+  <section class="plans-grid" aria-label="Pricing Plans">
+    <div class="plan-card">
+      <h2 class="plan-title">Starter Plan</h2>
+      <div class="plan-price">$49/mo</div>
+      <p class="plan-details">Ideal for individuals and small projects.</p>
+      <ul class="plan-features">
+        <li>Basic Legal Consultation</li>
+        <li>Access to Templates</li>
+        <li>Email Support</li>
+      </ul>
+      <a href="404.html" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan-card">
+      <h2 class="plan-title">Professional Plan</h2>
+      <div class="plan-price">$99/mo</div>
+      <p class="plan-details">Perfect for growing businesses.</p>
+      <ul class="plan-features">
+        <li>Extended Consultation Hours</li>
+        <li>Customized Legal Documents</li>
+        <li>Priority Email Support</li>
+      </ul>
+      <a href="404.html" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan-card">
+      <h2 class="plan-title">Enterprise Plan</h2>
+      <div class="plan-price">$199/mo</div>
+      <p class="plan-details">For large organizations and corporate clients.</p>
+      <ul class="plan-features">
+        <li>Dedicated Account Manager</li>
+        <li>24/7 Legal Support</li>
+        <li>On-Site Consultations</li>
+      </ul>
+      <a href="404.html" class="plan-btn">Get Started</a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer remains same as existing page -->
+<footer>
+  <p>&copy; 2025 Stackly. All rights reserved.</p>
+  <a href="#" aria-label="Privacy Policy">Privacy Policy</a>
+  <div class="social-icons" aria-label="Social Media Links">
+    <a href="mailto:info@stackly.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/your-profile" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://twitter.com/your-profile" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://facebook.com/your-profile" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com/your-profile" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Register | Stackly</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script> tailwind.config = { darkMode: 'class' };</script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+<style>
+  html, body { transition: background-color 0.3s, color 0.3s; font-family: 'Montserrat', sans-serif; }
+  select:invalid { color: gray; }
+
+  /* Card hover animation */
+  .register-card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 transition-transform duration-500 ease-in-out;
+  }
+  .register-card:hover { transform: translateY(-5px); }
+
+  input:focus, select:focus { @apply outline-none ring-2 ring-blue-500 dark:ring-blue-400; transition-all; }
+  button:hover { @apply scale-105 transition-transform; }
+</style>
+</head>
+<body class="bg-white dark:bg-gray-900 dark:text-white transition-colors duration-300" 
+      style="background-image: url('assets/images/body-background03.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+
+<!-- Register Section -->
+<main class="pt-32 pb-16 px-4">
+  <div class="register-card mx-auto w-full md:w-3/4 lg:w-2/3">
+    <h1 class="text-2xl font-bold text-center mb-6">Create Your Stackly Account</h1>
+    <form id="registerForm" class="grid md:grid-cols-2 gap-6">
+
+      <div>
+        <label for="name" class="block text-sm font-semibold mb-1">Full Name</label>
+        <input type="text" id="name" name="name" required class="capitalize w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-semibold mb-1">Email</label>
+        <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-semibold mb-1">Password</label>
+        <input type="password" id="password" name="password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        <p id="passwordHelp" class="text-xs text-red-500 mt-1"></p>
+      </div>
+
+      <div>
+        <label for="confirm-password" class="block text-sm font-semibold mb-1">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        <p id="confirmHelp" class="text-xs text-red-500 mt-1"></p>
+      </div>
+
+      <div>
+        <label for="dob" class="block text-sm font-semibold mb-1">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        <p id="dobHelp" class="text-xs text-red-500 mt-1"></p>
+      </div>
+
+      <div>
+        <label for="marital" class="block text-sm font-semibold mb-1">Marital Status</label>
+        <select id="marital" name="marital" required class="capitalize w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          <option value="" disabled selected>Select Status</option>
+          <option value="Single">Single</option>
+          <option value="Married">Married</option>
+          <option value="Divorced">Divorced</option>
+          <option value="Widowed">Widowed</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="gender" class="block text-sm font-semibold mb-1">Gender</label>
+        <select id="gender" name="gender" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          <option value="" disabled selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="role" class="block text-sm font-semibold mb-1">Role</label>
+        <select id="role" name="role" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          <option value="" disabled selected>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="customer">Customer</option>
+        </select>
+      </div>
+
+      <div class="md:col-span-2">
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold transition-all">Register</button>
+      </div>
+    </form>
+
+    <div class="text-center mt-6">
+      <button onclick="continueAsGuest()" class="text-blue-600 hover:underline text-sm">Continue as Guest</button>
+    </div>
+
+    <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-2">
+      Already have an account?
+      <a href="login.html" class="text-blue-600 hover:underline">Login here</a>.
+    </p>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300">
+  <p>&copy; <span id="year"></span> Stackly. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Theme Toggle
+const html = document.documentElement;
+const toggleBtn = document.getElementById("theme-toggle");
+const toggleIcon = document.getElementById("toggle-icon");
+
+function setIconBasedOnTheme() {
+  if (html.classList.contains("dark")) {
+    toggleIcon.classList.remove("fa-moon");
+    toggleIcon.classList.add("fa-sun");
+  } else {
+    toggleIcon.classList.remove("fa-sun");
+    toggleIcon.classList.add("fa-moon");
+  }
+}
+
+toggleBtn.addEventListener("click", () => {
+  html.classList.toggle("dark");
+  const newTheme = html.classList.contains("dark") ? "dark" : "light";
+  localStorage.setItem("theme", newTheme);
+  setIconBasedOnTheme();
+});
+
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") html.classList.add("dark");
+else html.classList.remove("dark");
+setIconBasedOnTheme();
+
+// Continue as Guest
+function continueAsGuest() {
+  localStorage.setItem("role", "guest");
+  window.location.href = "index.html";
+}
+
+// Validations
+const passwordField = document.getElementById("password");
+const confirmField = document.getElementById("confirm-password");
+const passwordHelp = document.getElementById("passwordHelp");
+const confirmHelp = document.getElementById("confirmHelp");
+
+passwordField.addEventListener("input", () => {
+  const pwd = passwordField.value;
+  const valid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pwd);
+  passwordHelp.textContent = valid ? "" : "Password must be at least 8 characters, include uppercase, lowercase, number, and special symbol.";
+});
+
+confirmField.addEventListener("input", () => {
+  confirmHelp.textContent = passwordField.value !== confirmField.value ? "Passwords must be same" : "";
+});
+
+document.getElementById("dob").addEventListener("change", () => {
+  const dob = new Date(document.getElementById("dob").value);
+  const age = new Date().getFullYear() - dob.getFullYear();
+  document.getElementById("dobHelp").textContent = age < 18 ? "You must be at least 18 years old to register." : "";
+});
+
+// Form Submission
+document.getElementById("registerForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = passwordField.value;
+  const confirmPassword = confirmField.value;
+  const dob = document.getElementById("dob").value;
+  const marital = document.getElementById("marital").value;
+  const gender = document.getElementById("gender").value;
+  const role = document.getElementById("role").value;
+
+  const dobDate = new Date(dob);
+  const age = new Date().getFullYear() - dobDate.getFullYear();
+  if (age < 18) return alert("You must be at least 18 years old to register.");
+  if (password !== confirmPassword) return alert("Passwords must be same.");
+
+  const user = { fullName: name, email, password, dob, maritalStatus: marital, gender, role };
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  users.push(user);
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Registration successful. Redirecting to login.");
+  window.location.href = "login.html";
+});
+</script>
+</body>
+</html>
