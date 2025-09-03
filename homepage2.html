@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stackly | Bespoke Legal Solutions</title>
   <meta name="description" content="Stackly - Trusted legal expertise for corporate and individual clients. Your partner in real estate, litigation, corporate law, and immigration." />
-  
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  
   <style>
     /* Reset and variables */
     :root {
@@ -101,17 +99,25 @@
       display: flex;
       gap: 2rem;
     }
-    nav ul li a {
+    nav ul li a, nav ul li button.dropdown-toggle {
       font-weight: 600;
       font-size: 1rem;
       color: var(--white);
       padding-bottom: 3px;
       border-bottom: 3px solid transparent;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
       transition: border-color 0.3s, color 0.3s;
     }
-    nav ul li a:hover, nav ul li a:focus {
+    nav ul li a:hover, nav ul li a:focus,
+    nav ul li button.dropdown-toggle:hover,
+    nav ul li button.dropdown-toggle:focus,
+    nav ul li a.active {
       border-bottom-color: var(--accent-light);
       color: var(--accent-light);
+      outline: none;
     }
     .btn-login {
       background: var(--accent);
@@ -128,6 +134,7 @@
       background-color: var(--accent-light);
       box-shadow: 0 0 10px var(--accent-light);
       color: var(--primary-dark);
+      outline: none;
     }
     .hamburger {
       display: none;
@@ -154,8 +161,45 @@
     .hamburger.open span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
-    
-    /* Responsive header nav */
+
+    /* Dropdown styles */
+    nav ul li.dropdown {
+      position: relative;
+    }
+    nav ul li.dropdown .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--background);
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      list-style: none;
+      min-width: 160px;
+      z-index: 1100;
+      padding: 0.5rem 0;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    nav ul li.dropdown .dropdown-menu.show {
+      display: block;
+      opacity: 1;
+    }
+    nav ul li.dropdown .dropdown-menu li a {
+      display: block;
+      padding: 0.75rem 1.3rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav ul li.dropdown .dropdown-menu li a:hover,
+    nav ul li.dropdown .dropdown-menu li a:focus {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      outline: none;
+    }
+
     @media (max-width: 900px) {
       nav ul {
         display: none;
@@ -181,6 +225,23 @@
       }
       .hamburger {
         display: flex;
+      }
+      /* Dropdown inside mobile nav */
+      nav ul li.dropdown .dropdown-menu {
+        position: relative;
+        box-shadow: none;
+        background: transparent;
+        padding-left: 1rem;
+      }
+      nav ul li.dropdown .dropdown-menu li a {
+        color: var(--primary-dark);
+        padding-left: 2rem;
+        background: transparent;
+      }
+      nav ul li.dropdown .dropdown-menu li a:hover,
+      nav ul li.dropdown .dropdown-menu li a:focus {
+        background: var(--accent-light);
+        color: var(--primary-dark);
       }
     }
 
@@ -239,7 +300,6 @@
       box-shadow: 0 8px 24px var(--accent-light);
       color: var(--primary-dark);
     }
-
     @keyframes fadeUp {
       0% {
         opacity: 0;
@@ -621,15 +681,23 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="nav-menu">
-        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <button class="dropdown-toggle" aria-expanded="false" aria-controls="home-dropdown" aria-haspopup="true">
+            Home
+          </button>
+          <ul class="dropdown-menu" id="home-dropdown" aria-label="submenu" hidden>
+            <li><a href="index.html">Home 1</a></li>
+            <li><a href="homepage2.html">Home 2</a></li>
+          </ul>
+        </li>
         <li><a href="about2.html">About</a></li>
-        <li><a href="404.html">Services</a></li>
+        <li><a href="services2.html">Services</a></li>
         <li><a href="404.html">SaaS</a></li>
         <li><a href="404.html">Digital Agency</a></li>
         <li><a href="404.html">Contact</a></li>
         <li><a href="404.html">Buy Now</a></li>
       </ul>
-      <a href="#" class="btn-login" tabindex="0">Login/Register</a>
+      <a href="login.html" class="btn-login" tabindex="0">Login/Register</a>
     </nav>
   </header>
   <main id="main-content">
@@ -772,10 +840,33 @@
           if (window.innerWidth <= 900) {
             hamburger.classList.remove('open');
             navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', false);
           }
         });
       });
     }
+
+    // Dropdown toggle on Home click
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.getElementById('home-dropdown');
+    dropdownToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+      dropdownToggle.setAttribute('aria-expanded', String(!expanded));
+      if (!expanded) {
+        dropdownMenu.hidden = false;
+        dropdownMenu.classList.add('show');
+      } else {
+        dropdownMenu.hidden = true;
+        dropdownMenu.classList.remove('show');
+      }
+    });
+    // Close dropdown if clicking outside
+    document.addEventListener('click', () => {
+      dropdownToggle.setAttribute('aria-expanded', 'false');
+      dropdownMenu.hidden = true;
+      dropdownMenu.classList.remove('show');
+    });
 
     // Smooth scroll with offset
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

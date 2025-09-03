@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services | Stackly</title>
+  <meta name="description" content="Discover Stackly's comprehensive legal services including real estate, corporate law, litigation, immigration, and compliance solutions with expert guidance." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    /* Base colors, fonts, and resets */
+    :root {
+      --primary: #0b3d91;
+      --primary-dark: #062d6c;
+      --accent: #0197f6;
+      --accent-light: #71c7ff;
+      --background: #f4f7fc;
+      --background-dark: #10254c;
+      --text-primary: #222b45;
+      --text-secondary: #576574;
+      --white: #ffffff;
+      --font-heading: 'DM Serif Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--text-primary);
+      background: var(--background);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background: var(--background-dark);
+      color: var(--white);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover, a:focus {
+      color: var(--primary);
+      outline: none;
+    }
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px;
+      background: var(--accent);
+      width: 0;
+      z-index: 2000;
+      transition: width 0.25s ease-out;
+    }
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(11, 61, 145, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      color: var(--white);
+      transition: background-color 0.3s, box-shadow 0.3s;
+      z-index: 1000;
+    }
+    header.scrolled {
+      background: var(--primary-dark);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      gap: 0.7rem;
+      color: var(--white);
+    }
+    .logo img {
+      height: 48px;
+      transition: transform 0.3s;
+    }
+    .logo:hover img {
+      transform: scale(1.1);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    nav ul li a:hover, nav ul li a:focus, nav ul li a.active {
+      border-bottom: 3px solid var(--accent-light);
+      color: var(--accent-light);
+    }
+    .btn-login {
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 700;
+      padding: 0.5em 1.5em;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .btn-login:hover, .btn-login:focus {
+      background-color: var(--accent-light);
+      box-shadow: 0 0 10px var(--accent-light);
+      color: var(--primary-dark);
+      outline: none;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: var(--white);
+      border-radius: 3px;
+      transition: transform 0.35s, opacity 0.35s;
+    }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        position: fixed;
+        top: 64px; right: 0;
+        background: var(--background);
+        flex-direction: column;
+        width: 280px;
+        padding: 2rem 1.5rem;
+        height: 100vh;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        z-index: 1050;
+      }
+      nav ul.open {
+        display: flex;
+        transform: translateX(0);
+      }
+      .btn-login {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 6rem auto 6rem auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 20px 65px rgba(45,70,120,0.15);
+      overflow: hidden;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Services Hero */
+    .services-hero {
+      background: linear-gradient(135deg, rgba(40,65,111,0.93) 60%, rgba(75,101,132,0.7) 100%);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem 2rem 2rem;
+      font-family: 'Merriweather', serif;
+    }
+    .services-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.02em;
+      text-shadow: 1px 2px 10px rgba(30,60,100,0.16);
+    }
+    .services-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem auto;
+      font-weight: 500;
+      letter-spacing: .007em;
+    }
+    .section-img {
+      width: 100%;
+      max-width: 650px;
+      margin: 2rem auto 1.2rem auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(44,74,121,0.07);
+      display: block;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.4rem 2.8rem;
+      padding: 2.5rem 3rem 3rem 3rem;
+      justify-content: center;
+    }
+    .service-card {
+      background: #f7f9fb;
+      border-radius: 18px;
+      box-shadow: 0 6px 28px rgba(30,60,100,0.08);
+      padding: 2.2rem 2rem 1.8rem 2rem;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      outline: none;
+    }
+    .service-card:hover, .service-card:focus-within {
+      box-shadow: 0 18px 48px rgba(1,119,198,0.15);
+      transform: translate3d(0,-6px,0) scale(1.04);
+      background: #e5efff;
+      z-index: 10;
+    }
+    .service-icon {
+      font-size: 3rem;
+      color: #2866b3;
+      margin-bottom: 1.15rem;
+      transition: transform 0.5s ease-in-out;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.12));
+    }
+    .service-card:hover .service-icon,
+    .service-card:focus-within .service-icon {
+      transform: scale(1.25) rotate(-10deg);
+      color: #004a82;
+    }
+    .service-title {
+      font-family: 'Merriweather', serif;
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: #223e70;
+      line-height: 1.3;
+      margin-bottom: 0.7rem;
+    }
+    .service-desc {
+      font-size: 1rem;
+      color: #455067;
+      margin-bottom: 0.5rem;
+      min-height: 54px;
+    }
+
+    /* Accordion */
+    .accordion-label {
+      font-weight: 600;
+      color: #0197f6;
+      cursor: pointer;
+      display: inline-block;
+      user-select: none;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+      margin-bottom: 0;
+    }
+    .accordion-label:hover, .accordion-label:focus {
+      color: #28416f;
+      outline: none;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      background: #dbe9ff;
+      color: #1c3b6d;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      padding: 0 1rem;
+      margin-top: 8px;
+      margin-bottom: 1.3rem;
+      transition: max-height 0.5s ease;
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+    input[type="checkbox"]:checked ~ .accordion-content {
+      max-height: 250px;
+      padding: 0.6rem 1rem 0.8rem 1rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(95deg, #28416f 60%, #4b6584 100%);
+      color: #fff;
+      border-radius: 14px;
+      text-align: center;
+      margin: 3rem 3rem 3rem 3rem;
+      padding: 2.5rem 2rem;
+      font-family: 'Merriweather', serif;
+      box-shadow: 0 12px 44px rgba(1,119,198,0.32);
+    }
+    .cta-section h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: 0.01em;
+    }
+    .cta-section p {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      color: #28416f;
+      background: #fff;
+      font-weight: 700;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      padding: 0.8em 2.4em;
+      box-shadow: 0 10px 28px rgba(40, 65, 111, 0.19);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      user-select: none;
+    }
+    .cta-btn:hover,
+    .cta-btn:focus {
+      background: #003b77;
+      color: white;
+      box-shadow: 0 14px 42px rgba(0, 59, 119, 0.6);
+      outline: none;
+    }
+
+    /* Footer styling consistent with homepage2.html */
+    footer.site-footer {
+      background: var(--primary-dark);
+      padding: 3rem 1.5rem;
+      color: var(--accent-light);
+      text-align: center;
+      font-weight: 600;
+      margin-top: 3rem;
+    }
+    footer.site-footer p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    footer.site-footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    footer.site-footer .social a {
+      background: var(--primary);
+      padding: 0.8rem 1.1rem;
+      border-radius: 50%;
+      color: var(--accent-light);
+      font-weight: 900;
+      font-size: 1.3rem;
+      transition: background-color 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    footer.site-footer .social a:hover, footer.site-footer .social a:focus {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      transform: scale(1.15);
+      box-shadow: 0 8px 20px var(--accent-light);
+      outline: none;
+    }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+      header.scrolled .navbar {
+        padding: 0.8rem 1rem;
+      }
+      nav ul {
+        width: 260px;
+      }
+      nav ul li a {
+        font-size: 1.1rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta-section {
+        margin: 2rem 1rem 3rem 1rem;
+        padding: 1.8rem 1.2rem;
+      }
+    }
+    @media(max-width: 550px) {
+      .services-hero h1 {
+        font-size: 2rem;
+      }
+      .services-hero p {
+        font-size: 1rem;
+      }
+      .cta-section h2 {
+        font-size: 1.4rem;
+      }
+      .cta-section p {
+        font-size: 1rem;
+      }
+      .cta-btn {
+        font-size: 1rem;
+        padding: 0.6em 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress"></div>
+  
+  <header class="site-header">
+    <nav class="navbar" aria-label="Primary navigation">
+      <a href="homepage2.html" class="logo" aria-label="Stackly Home">
+        <img src="assets/logo/logo.png" alt="Stackly Logo" />
+        <span>Stackly</span>
+      </a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="homepage2.html">Home</a></li>
+        <li><a href="about2.html">About</a></li>
+        <li><a href="services2.html" class="active">Services</a></li>
+        <li><a href="404.html">SaaS</a></li>
+        <li><a href="404.html">Digital Agency</a></li>
+        <li><a href="404.html">Contact</a></li>
+        <li><a href="404.html">Buy Now</a></li>
+      </ul>
+      <a href="login.html" class="btn-login" tabindex="0">Login/Register</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="services-hero" role="banner" aria-label="Services Intro">
+      <h1>Our Services</h1>
+      <p>
+        Discover the full spectrum of legal services Stackly offers. Every solution is delivered with uncompromising integrity, expertise, and attention to your unique needs.
+      </p>
+      <img src="https://images.pexels.com/photos/6078123/pexels-photo-6078123.jpeg?auto=compress&w=900&q=80" alt="Law team working together" class="section-img" />
+    </section>
+
+    <section class="services-grid" aria-label="Legal Service Offerings">
+      <article class="service-card" tabindex="0" aria-expanded="false" aria-controls="desc1">
+        <span class="service-icon" aria-hidden="true"><i class="fas fa-building"></i></span>
+        <div class="service-title">Real Estate & Investment</div>
+        <div class="service-desc">Legal guidance for property transactions, due diligence, contracts, and investments.</div>
+        <input type="checkbox" id="card1" aria-hidden="true" />
+        <label for="card1" class="accordion-label" aria-controls="desc1" aria-expanded="false" tabindex="0">Learn more</label>
+        <div class="accordion-content" id="desc1" role="region" aria-live="polite">
+          <p>We assist with document review, risk analysis, title clearance, negotiation, and post-purchase compliance for all types of property and investment transactions.</p>
+        </div>
+      </article>
+      <article class="service-card" tabindex="0" aria-expanded="false" aria-controls="desc2">
+        <span class="service-icon" aria-hidden="true"><i class="fas fa-file-signature"></i></span>
+        <div class="service-title">Corporate & Commercial Law</div>
+        <div class="service-desc">Business setup, M&A, regulatory compliance, contract drafting, and negotiations.</div>
+        <input type="checkbox" id="card2" aria-hidden="true" />
+        <label for="card2" class="accordion-label" aria-controls="desc2" aria-expanded="false" tabindex="0">Learn more</label>
+        <div class="accordion-content" id="desc2" role="region" aria-live="polite">
+          <p>We provide support for incorporations, JV agreements, mergers, shareholder rights, and drafting of all business contracts and partnerships.</p>
+        </div>
+      </article>
+      <article class="service-card" tabindex="0" aria-expanded="false" aria-controls="desc3">
+        <span class="service-icon" aria-hidden="true"><i class="fas fa-gavel"></i></span>
+        <div class="service-title">Litigation & Dispute Resolution</div>
+        <div class="service-desc">Representation, arbitration, mediation, and custom dispute strategy.</div>
+        <input type="checkbox" id="card3" aria-hidden="true" />
+        <label for="card3" class="accordion-label" aria-controls="desc3" aria-expanded="false" tabindex="0">Learn more</label>
+        <div class="accordion-content" id="desc3" role="region" aria-live="polite">
+          <p>Our teams advocate in all courts and tribunals, with practical dispute management or mediation for the most complex cases.</p>
+        </div>
+      </article>
+      <article class="service-card" tabindex="0" aria-expanded="false" aria-controls="desc4">
+        <span class="service-icon" aria-hidden="true"><i class="fas fa-passport"></i></span>
+        <div class="service-title">Immigration & Residency</div>
+        <div class="service-desc">Visa services, advisory, residency applications, multi-national solutions.</div>
+        <input type="checkbox" id="card4" aria-hidden="true" />
+        <label for="card4" class="accordion-label" aria-controls="desc4" aria-expanded="false" tabindex="0">Learn more</label>
+        <div class="accordion-content" id="desc4" role="region" aria-live="polite">
+          <p>Expert help with work, student, investor visas, citizenship, family reunification, and international regulations.</p>
+        </div>
+      </article>
+      <article class="service-card" tabindex="0" aria-expanded="false" aria-controls="desc5">
+        <span class="service-icon" aria-hidden="true"><i class="fas fa-file-alt"></i></span>
+        <div class="service-title">Notarial & Certification</div>
+        <div class="service-desc">Document attestation, affidavits, notary, and legal certifications.</div>
+        <input type="checkbox" id="card5" aria-hidden="true" />
+        <label for="card5" class="accordion-label" aria-controls="desc5" aria-expanded="false" tabindex="0">Learn more</label>
+        <div class="accordion-content" id="desc5" role="region" aria-live="polite">
+          <p>Fast issuance and endorsement of legal documents, certificates, statutory declarations, and more.</p>
+        </div>
+      </article>
+      <article class="service-card" tabindex="0" aria-expanded="false" aria-controls="desc6">
+        <span class="service-icon" aria-hidden="true"><i class="fas fa-user-shield"></i></span>
+        <div class="service-title">Regulatory & Compliance</div>
+        <div class="service-desc">Support in regulatory filings, business compliance, and statutory frameworks.</div>
+        <input type="checkbox" id="card6" aria-hidden="true" />
+        <label for="card6" class="accordion-label" aria-controls="desc6" aria-expanded="false" tabindex="0">Learn more</label>
+        <div class="accordion-content" id="desc6" role="region" aria-live="polite">
+          <p>We handle everything from registration, licenses, compliance audits, and ongoing business controls for safe, legal operation.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="cta-section" role="region" aria-label="Contact Call to Action">
+      <h2>Not Sure Which Service You Need?</h2>
+      <p>Contact Stackly for a free initial assessment—let our team guide you to the legal service that's right for you.</p>
+      <a href="contact.html" class="cta-btn">Get Started</a>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; 2025 Stackly. All rights reserved.</p>
+    <div class="social">
+      <a href="mailto:info@stackly.com" aria-label="Email">✉️</a>
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="Twitter">🐦</a>
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="Instagram">📸</a>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 900) {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', false);
+          }
+        });
+      });
+    }
+
+    // Intersection Observer fade in for sections and cards
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('main > section, .service-card').forEach(el => observer.observe(el));
+
+    // Accordion label aria-expanded toggle
+    document.querySelectorAll('.accordion-label').forEach(label => {
+      label.addEventListener('click', () => {
+        const checkbox = document.getElementById(label.getAttribute('for'));
+        if (checkbox) {
+          label.setAttribute('aria-expanded', checkbox.checked);
+        }
+      });
+      label.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          label.click();
+        }
+      });
+    });
+
+    // Scroll progress bar
+    const progressBar = document.querySelector('.scroll-progress');
+    window.addEventListener('scroll', () => {
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / height) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+
+    // Dark mode toggle button
+    const darkToggle = document.createElement('button');
+    darkToggle.textContent = '🌙';
+    Object.assign(darkToggle.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      zIndex: '2000',
+      padding: '0.5rem',
+      borderRadius: '50%',
+      border: 'none',
+      cursor: 'pointer',
+      backgroundColor: 'var(--primary)',
+      color: 'white',
+      fontSize: '1.2rem',
+    });
+    document.body.appendChild(darkToggle);
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
