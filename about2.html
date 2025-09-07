@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About | Stackly</title>
-  <meta name="description" content="About Stackly - Innovative legal solutions with responsive service and expert team. Serving clients nationwide." />
-
-  <!-- Google Fonts -->
+  <title>Stackly | Bespoke Legal Solutions</title>
+  <meta name="description" content="Stackly - Trusted legal expertise for corporate and individual clients. Your partner in real estate, litigation, corporate law, and immigration." />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Styles matching homepage2.html theme -->
   <style>
+    /* Reset and variables */
     :root {
       --primary: #0b3d91;
       --primary-dark: #062d6c;
@@ -35,9 +32,6 @@
       line-height: 1.6;
       scroll-behavior: smooth;
       transition: background 0.3s, color 0.3s;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
     body.dark-mode {
       background: var(--background-dark);
@@ -61,14 +55,14 @@
       z-index: 2000;
       transition: width 0.25s ease-out;
     }
-    /* Header styles */
+    /* Header */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       background: rgba(11, 61, 145, 0.95);
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
       color: var(--white);
-      transition: background 0.3s, box-shadow 0.3s;
+      transition: background-color 0.3s, box-shadow 0.3s;
       z-index: 1000;
     }
     header.scrolled {
@@ -121,7 +115,7 @@
     nav ul li button.dropdown-toggle:hover,
     nav ul li button.dropdown-toggle:focus,
     nav ul li a.active {
-      border-bottom: 3px solid var(--accent-light);
+      border-bottom-color: var(--accent-light);
       color: var(--accent-light);
       outline: none;
     }
@@ -134,10 +128,10 @@
       font-size: 0.95rem;
       border: none;
       cursor: pointer;
-      transition: background 0.3s, box-shadow 0.3s;
+      transition: background-color 0.3s, box-shadow 0.3s;
     }
     .btn-login:hover, .btn-login:focus {
-      background: var(--accent-light);
+      background-color: var(--accent-light);
       box-shadow: 0 0 10px var(--accent-light);
       color: var(--primary-dark);
       outline: none;
@@ -167,6 +161,45 @@
     .hamburger.open span:nth-child(3) {
       transform: rotate(-45deg) translate(5px, -5px);
     }
+
+    /* Dropdown styles */
+    nav ul li.dropdown {
+      position: relative;
+    }
+    nav ul li.dropdown .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--background);
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      list-style: none;
+      min-width: 160px;
+      z-index: 1100;
+      padding: 0.5rem 0;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    nav ul li.dropdown .dropdown-menu.show {
+      display: block;
+      opacity: 1;
+    }
+    nav ul li.dropdown .dropdown-menu li a {
+      display: block;
+      padding: 0.75rem 1.3rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav ul li.dropdown .dropdown-menu li a:hover,
+    nav ul li.dropdown .dropdown-menu li a:focus {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      outline: none;
+    }
+
     @media (max-width: 900px) {
       nav ul {
         display: none;
@@ -176,10 +209,11 @@
         flex-direction: column;
         width: 280px;
         padding: 2rem 1.5rem;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.15);
         height: 100vh;
-        overflow-y: auto;
         transform: translateX(100%);
         transition: transform 0.3s ease;
+        overflow-y: auto;
         z-index: 1050;
       }
       nav ul.open {
@@ -192,8 +226,449 @@
       .hamburger {
         display: flex;
       }
+      /* Dropdown inside mobile nav */
+      nav ul li.dropdown .dropdown-menu {
+        position: relative;
+        box-shadow: none;
+        background: transparent;
+        padding-left: 1rem;
+      }
+      nav ul li.dropdown .dropdown-menu li a {
+        color: var(--primary-dark);
+        padding-left: 2rem;
+        background: transparent;
+      }
+      nav ul li.dropdown .dropdown-menu li a:hover,
+      nav ul li.dropdown .dropdown-menu li a:focus {
+        background: var(--accent-light);
+        color: var(--primary-dark);
+      }
     }
 
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: url('assets/images/new-hero.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11,61,145,0.85) 0%, rgba(1,151,246,0.65) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+      z-index: 2;
+      animation: fadeUp 1.2s ease-in-out;
+    }
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      color: var(--accent-light);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 1em 3em;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 18px var(--accent-light);
+      transition: background-color 0.3s, transform 0.25s ease;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--accent-light);
+      color: var(--primary-dark);
+    }
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    main {
+      margin: 0 auto;
+      max-width: 1200px;
+      padding: 4rem 1.5rem 6rem;
+    }
+    section {
+      margin-bottom: 5rem;
+    }
+
+    /* Section fade and stagger animations */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .stagger.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    /* About Section */
+    .section.split {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      align-items: center;
+    }
+    .section.split img {
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease;
+      width: 100%;
+    }
+    .section.split img:hover {
+      transform: scale(1.04);
+    }
+    .section-content h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .section-content p {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      line-height: 1.75;
+    }
+
+    /* Core Values */
+    .section-cards {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      text-align: center;
+    }
+    .center {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 3rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+    }
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem 2rem 3rem;
+      box-shadow: 0 12px 40px rgba(1, 151, 246, 0.15);
+      transition: box-shadow 0.3s, transform 0.3s;
+      cursor: default;
+      color: var(--primary-dark);
+    }
+    .card:hover, .card:focus {
+      box-shadow: 0 25px 70px rgba(1, 151, 246, 0.35);
+      transform: translateY(-12px) scale(1.07);
+    }
+    .card .icon {
+      font-size: 3.8rem;
+      margin-bottom: 1.25rem;
+      color: var(--accent);
+    }
+    .card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+    }
+    .card p {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* Services List */
+    .section-list {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .section-list h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .section-list ul {
+      list-style: disc inside;
+      font-weight: 600;
+      color: var(--primary-dark);
+      max-width: 520px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+    .section-list li {
+      margin-bottom: 0.85rem;
+    }
+
+    /* Team */
+    .team-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 2.5rem;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .team-member img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1.25rem;
+      filter: grayscale(100%);
+      transition: filter 0.5s ease, transform 0.35s ease;
+      cursor: default;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .team-member:hover img {
+      filter: grayscale(0);
+      transform: scale(1.13) rotate(3deg);
+      box-shadow: 0 8px 25px rgba(1, 151, 246, 0.4);
+    }
+    .team-member h4 {
+      font-family: var(--font-heading);
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      font-size: 1.3rem;
+    }
+    .team-member p {
+      font-size: 1rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Stats */
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto 3rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 3rem;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .stat-box {
+      background: var(--accent-light);
+      border-radius: 16px;
+      padding: 3rem 1.5rem;
+      box-shadow: 0 10px 40px rgba(1,151,246,0.15);
+      cursor: default;
+      color: var(--primary-dark);
+    }
+    .stat-box h3 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 0.7rem;
+    }
+    .stat-box p {
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      padding: 4rem 2rem;
+      color: var(--white);
+      border-radius: 20px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 6rem auto;
+      box-shadow: 0 12px 45px rgba(1,151,246,0.45);
+    }
+    .cta-banner h3 {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      text-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    .cta-banner p {
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+    .cta-banner .btn-primary {
+      padding: 1.2em 3.5em;
+      font-size: 1.3rem;
+      border-radius: 60px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      max-width: 1100px;
+      margin: 0 auto 8rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 3rem;
+      padding: 0 1.5rem;
+    }
+    address {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--primary-dark);
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    address p, address a {
+      margin-bottom: 0.9rem;
+      font-weight: 500;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    input, textarea {
+      padding: 1.25rem;
+      font-size: 1.1rem;
+      border: 1.8px solid #b8cee7;
+      border-radius: 10px;
+      transition: border-color 0.3s;
+      resize: vertical;
+      box-shadow: inset 0 0 8px rgba(75,138,199,0.1);
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 12px var(--accent);
+    }
+    button[type="submit"] {
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 900;
+      font-size: 1.3rem;
+      padding: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px var(--accent);
+      transition: background-color 0.3s, transform 0.25s ease;
+    }
+    button[type="submit"]:hover, button[type="submit"]:focus {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px var(--accent-light);
+    }
+
+    /* Footer */
+    footer.site-footer {
+      background: var(--primary-dark);
+      padding: 3rem 1.5rem;
+      color: var(--accent-light);
+      text-align: center;
+      font-weight: 600;
+    }
+    footer.site-footer p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    footer.site-footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    footer.site-footer .social a {
+      background: var(--primary);
+      padding: 0.8rem 1.1rem;
+      border-radius: 50%;
+      color: var(--accent-light);
+      font-weight: 900;
+      font-size: 1.3rem;
+      transition: background-color 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    footer.site-footer .social a:hover, footer.site-footer .social a:focus {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      transform: scale(1.15);
+      box-shadow: 0 8px 20px var(--accent-light);
+      outline: none;
+    }
+
+    /* Responsive Fixes */
+    @media (max-width: 900px) {
+      header.scrolled .navbar {
+        padding: 0.8rem 1rem;
+      }
+      nav ul {
+        width: 260px;
+      }
+      nav ul li a {
+        font-size: 1.1rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .section.split {
+        grid-template-columns: 1fr;
+      }
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 400px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    
     main {
       margin: 0 auto;
       max-width: 1100px;
@@ -373,100 +848,10 @@
       background: var(--accent);
       color: var(--primary-dark);
     }
-
-    footer.site-footer {
-      background: var(--primary-dark);
-      padding: 3rem 1.5rem;
-      color: var(--accent-light);
-      font-weight: 600;
-      text-align: center;
-    }
-
-    footer.site-footer p {
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-
-    footer.site-footer .social {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      font-size: 1.3rem;
-    }
-
-    footer.site-footer .social a {
-      color: var(--accent-light);
-      transition: color 0.3s;
-      text-decoration: none;
-    }
-
-    footer.site-footer .social a:hover,
-    footer.site-footer .social a:focus {
-      color: var(--accent);
-    }
-
-    /* Dropdown styles */
-    nav ul li.dropdown {
-      position: relative;
-    }
-    nav ul li.dropdown .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--background);
-      border-radius: 6px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      list-style: none;
-      min-width: 160px;
-      z-index: 1100;
-      padding: 0.5rem 0;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    nav ul li.dropdown .dropdown-menu.show {
-      display: block;
-      opacity: 1;
-    }
-    nav ul li.dropdown .dropdown-menu li a {
-      display: block;
-      padding: 0.75rem 1.3rem;
-      color: var(--text-primary);
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s;
-    }
-    nav ul li.dropdown .dropdown-menu li a:hover,
-    nav ul li.dropdown .dropdown-menu li a:focus {
-      background: var(--accent-light);
-      color: var(--primary-dark);
-      outline: none;
-    }
-    @media (max-width: 900px) {
-      nav ul li.dropdown .dropdown-menu {
-        position: relative;
-        box-shadow: none;
-        background: transparent;
-        padding-left: 1rem;
-      }
-      nav ul li.dropdown .dropdown-menu li a {
-        color: var(--primary-dark);
-        padding-left: 2rem;
-        background: transparent;
-      }
-      nav ul li.dropdown .dropdown-menu li a:hover,
-      nav ul li.dropdown .dropdown-menu li a:focus {
-        background: var(--accent-light);
-        color: var(--primary-dark);
-      }
-    }
   </style>
 </head>
 <body>
-
   <div class="scroll-progress"></div>
-
-  <!-- Header copied from homepage2.html -->
   <header class="site-header">
     <nav class="navbar" aria-label="Primary navigation">
       <a href="#hero" class="logo" aria-label="Stackly Home">
@@ -478,17 +863,13 @@
       </button>
       <ul class="nav-links" id="nav-menu">
         <li class="dropdown">
-          <button class="dropdown-toggle" aria-expanded="false" aria-controls="home-dropdown" aria-haspopup="true">
-            Home
-          </button>
           <ul class="dropdown-menu" id="home-dropdown" aria-label="submenu" hidden>
-            <li><a href="index.html">Home 1</a></li>
-            <li><a href="homepage2.html">Home 2</a></li>
           </ul>
         </li>
-        <li><a href="about2.html" class="active">About</a></li>
+        <li><a href="homepage2.html">Home</a></li>
+        <li><a href="about2.html" aria-current="page">About</a></li>
         <li><a href="services2.html">Services</a></li>
-        <li><a href="404.html">SaaS</a></li>
+        <li><a href="saas2.html">SaaS</a></li>
         <li><a href="404.html">Digital Agency</a></li>
         <li><a href="404.html">Contact</a></li>
         <li><a href="404.html">Buy Now</a></li>
@@ -497,7 +878,7 @@
     </nav>
   </header>
 
-  <!-- Main Body Content extracted from given about.html -->
+    <!-- Main Body Content extracted from given about.html -->
   <main>
     <div class="about-hero">
       <h1>Our Story & Purpose</h1>
@@ -561,7 +942,6 @@
     </section>
   </main>
 
-  <!-- Footer copied from homepage2.html -->
   <footer class="site-footer">
     <p>&copy; 2025 Stackly. All rights reserved.</p>
     <div class="social">
@@ -572,76 +952,36 @@
       <a href="#" aria-label="Instagram">📸</a>
     </div>
   </footer>
-
   <script>
+    // HEADER scroll effect
     const header = document.querySelector('.site-header');
-    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
 
+    // Hamburger menu toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(window.innerWidth <= 900){
-          hamburger.classList.remove('open');
-          navLinks.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', false);
-        }
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', isOpen);
       });
-    });
-
-    const progressBar = document.createElement('div');
-    progressBar.className = 'scroll-progress';
-    document.body.appendChild(progressBar);
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      progressBar.style.width = scrollPercent + '%';
-    });
-
-    // Intersection Observer for fade-in sections
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 900) {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', false);
+          }
+        });
       });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('main > section, .about-hero, .cta').forEach(section => observer.observe(section));
-
-    // Dark mode toggle
-    const darkToggle = document.createElement('button');
-    darkToggle.textContent = '🌙';
-    Object.assign(darkToggle.style, {
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px',
-      zIndex: '10000',
-      padding: '0.5rem',
-      borderRadius: '50%',
-      backgroundColor: 'var(--primary)',
-      color: 'white',
-      fontSize: '1.25rem',
-      border: 'none',
-      cursor: 'pointer'
-    });
-    document.body.appendChild(darkToggle);
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-    });
-
+    }
 
     // Dropdown toggle on Home click
     const dropdownToggle = document.querySelector('.dropdown-toggle');
     const dropdownMenu = document.getElementById('home-dropdown');
-
     dropdownToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
@@ -654,14 +994,125 @@
         dropdownMenu.classList.remove('show');
       }
     });
-
     // Close dropdown if clicking outside
     document.addEventListener('click', () => {
       dropdownToggle.setAttribute('aria-expanded', 'false');
       dropdownMenu.hidden = true;
       dropdownMenu.classList.remove('show');
     });
-  </script>
 
+    // Smooth scroll with offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const id = anchor.getAttribute('href');
+        if (id.length > 1) {
+          const el = document.querySelector(id);
+          if (el) {
+            e.preventDefault();
+            const offset = el.getBoundingClientRect().top + window.pageYOffset - header.offsetHeight;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Form submission feedback
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        form.querySelector('.form-message')?.remove();
+        const msg = document.createElement('p');
+        msg.className = 'form-message';
+        msg.style.color = 'green';
+        msg.style.marginTop = '0.5rem';
+        msg.textContent = '✅ Thank you! We will get back to you soon.';
+        form.appendChild(msg);
+        form.reset();
+      });
+    });
+
+    // Intersection Observer for fade in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+
+    // Staggered animation
+    const staggerObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stagger').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 150);
+          });
+          staggerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.stagger-container').forEach(el => staggerObserver.observe(el));
+
+    // Scroll progress bar
+    const progressBar = document.querySelector('.scroll-progress');
+    window.addEventListener('scroll', () => {
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / height) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+
+    // Hero parallax
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      hero.style.backgroundPositionY = `${window.scrollY * 0.4}px`;
+    });
+
+    // Animated counters
+    function animateCounter(el, target, duration = 1500) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          start = target;
+          clearInterval(timer);
+        }
+        el.textContent = Math.floor(start);
+      }, 16);
+    }
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target, +entry.target.dataset.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Dark mode toggle button
+    const darkToggle = document.createElement('button');
+    darkToggle.textContent = '🌙';
+    Object.assign(darkToggle.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      zIndex: '2000',
+      padding: '0.5rem',
+      borderRadius: '50%',
+      border: 'none',
+      cursor: 'pointer',
+      backgroundColor: 'var(--primary)',
+      color: 'white',
+      fontSize: '1.2rem',
+    });
+    document.body.appendChild(darkToggle);
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+  </script>
 </body>
 </html>

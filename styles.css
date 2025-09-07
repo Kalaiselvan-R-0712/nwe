@@ -697,3 +697,120 @@ footer a:focus {
   box-shadow: 0 8px 20px rgba(44, 74, 121, 0.15);
   outline: none;
 }
+
+/* Dropdown base */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--white);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  list-style: none;
+  min-width: 160px;
+  z-index: 999;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: var(--primary);
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Make sure dropdowns can overflow the nav on desktop */
+.nav-links { overflow: visible; }
+
+/* Dropdown base */
+.dropdown { position: relative; }
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus {
+  background: var(--primary);
+  color: var(--white);
+  outline: 2px solid var(--accent);
+  box-shadow: 0 2px 8px var(--accent);
+}
+
+/* The menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--white);
+  border: 1px solid #dde3ea;
+  border-radius: 8px;
+  list-style: none;
+  min-width: 180px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  padding: 0.4rem 0;
+  z-index: 999;
+  display: none; /* hidden by default, shown via .show class */
+}
+
+.dropdown-menu.show { display: block; }
+
+.dropdown-menu li { border-bottom: 1px solid #f0f2f6; }
+.dropdown-menu li:last-child { border-bottom: none; }
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: var(--primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* Mobile: stack the dropdown inside the menu */
+@media (max-width: 520px) {
+  .nav-links { overflow: hidden; }          /* keep your mobile animation behavior */
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: 1px solid #dde3ea;
+    border-radius: 6px;
+    margin-top: 0.4rem;
+  }
+}

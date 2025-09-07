@@ -23,8 +23,15 @@
   <span class="brand-name">Stackly</span>
 </a>
       <ul class="nav-links">
-        <!-- Matched hrefs to section ids -->
-        <li><a href="homepage2.html">Home</a></li>
+<li class="dropdown">
+  <button class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="home-dropdown">
+    Home <span aria-hidden="true">▾</span>
+  </button>
+  <ul class="dropdown-menu" id="home-dropdown" hidden>
+    <li><a href="index.html">Home 1</a></li>
+    <li><a href="homepage2.html">Home 2</a></li>
+  </ul>
+</li>
         <li><a href="about.html">About</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="faq.html">FAQ</a></li>
