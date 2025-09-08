@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SaaS Solutions | Stackly</title>
+  <meta name="description" content="Explore Stackly SaaS solutions – scalable, secure, and user-friendly software designed to accelerate your business growth." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0b3d91;
+      --primary-dark: #062d6c;
+      --accent: #0197f6;
+      --accent-light: #71c7ff;
+      --background: #f4f7fc;
+      --background-dark: #10254c;
+      --text-primary: #222b45;
+      --text-secondary: #576574;
+      --white: #ffffff;
+      --font-heading: 'DM Serif Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--text-primary);
+      background: var(--background);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    body.dark-mode { background: var(--background-dark); color: var(--white); }
+    a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+    a:hover, a:focus { color: var(--primary); }
+
+    /* Scroll progress bar */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 4px; background: var(--accent);
+      width: 0; z-index: 2000;
+    }
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(11, 61, 145, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      color: var(--white);
+      transition: background 0.3s, box-shadow 0.3s;
+      z-index: 1000;
+    }
+    header.scrolled { background: var(--primary-dark); box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+    .navbar {
+      max-width: 1200px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .logo { display: flex; align-items: center; font-family: var(--font-heading); font-size: 1.9rem; font-weight: 700; color: var(--white); gap: 0.7rem; }
+    .logo img { height: 48px; transition: transform 0.3s; }
+    .logo:hover img { transform: scale(1.1); }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a,
+    nav ul li button.dropdown-toggle {
+      font-weight: 600; font-size: 1rem; color: var(--white);
+      background: none; border: none; cursor: pointer;
+      transition: color 0.3s; text-decoration: none;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus,
+    nav ul li button.dropdown-toggle:hover,
+    nav ul li button.dropdown-toggle:focus,
+    nav ul li a.active { color: var(--accent-light); }
+
+    .btn-login {
+      background: var(--accent); color: var(--white);
+      font-weight: 700; padding: 0.5em 1.5em;
+      border-radius: 40px; font-size: 0.95rem;
+      border: none; cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .btn-login:hover { background: var(--accent-light); box-shadow: 0 0 10px var(--accent-light); color: var(--primary-dark); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+    .hamburger span { width: 26px; height: 3px; background: var(--white); border-radius: 3px; transition: transform 0.35s, opacity 0.35s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    @media (max-width: 900px) {
+      nav ul {
+        display: none; position: fixed; top: 64px; right: 0;
+        background: var(--background);
+        flex-direction: column; width: 280px;
+        padding: 2rem 1.5rem; height: 100vh;
+        transform: translateX(100%); transition: transform 0.3s ease;
+      }
+      nav ul.open { display: flex; transform: translateX(0); }
+      .btn-login { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    main { margin: 0 auto; max-width: 1100px; padding: 6rem 1.5rem 6rem; flex-grow: 1; }
+
+    /* SaaS Hero */
+    .saas-hero {
+      background: linear-gradient(135deg, rgba(40,65,111,0.93) 55%, rgba(75,101,132,0.7) 100%);
+      color: #fff; text-align: center; padding: 4rem 2rem;
+      border-radius: 12px; margin-bottom: 3rem;
+    }
+    .saas-hero h1 { font-family: var(--font-heading); font-size: 2.8rem; margin-bottom: 1rem; }
+    .saas-hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; }
+    .saas-hero .cta-btn {
+      background: var(--accent); color: var(--white);
+      font-size: 1.1rem; font-weight: 700;
+      padding: 0.7em 2em; border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .saas-hero .cta-btn:hover { background: var(--accent-light); color: var(--primary-dark); }
+
+    /* Features */
+    .features { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; margin-bottom: 3rem; }
+    .feature-card {
+      background: var(--white); padding: 2rem; border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(40,65,111,0.12); text-align: center;
+    }
+    .feature-card i { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+    .feature-card h3 { font-family: var(--font-heading); margin-bottom: 0.8rem; }
+
+/* Pricing Section */
+.pricing {
+  padding: 4rem 2rem;
+  background: var(--light-bg);
+  text-align: center;
+}
+
+.pricing .section-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+}
+
+.pricing .section-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-light);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.pricing-card .price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--primary-dark);
+}
+
+.pricing-card .price span {
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--text-light);
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card ul li {
+  margin: 0.5rem 0;
+  color: var(--text-dark);
+}
+
+.pricing-card .cta-btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.pricing-card .cta-btn:hover {
+  background: var(--primary-dark);
+}
+
+.pricing-card.highlight {
+  border: 2px solid var(--primary);
+  transform: scale(1.05);
+}
+
+    /* Testimonials */
+    .testimonials { margin: 3rem 0; }
+    .testimonial {
+      background: #eef4fb; padding: 2rem; border-radius: 10px;
+      margin-bottom: 1.5rem; font-style: italic;
+    }
+    .testimonial strong { display: block; margin-top: 0.8rem; font-style: normal; }
+
+    /* Footer */
+    footer.site-footer {
+      background: var(--primary-dark);
+      padding: 3rem 1.5rem;
+      color: var(--accent-light);
+      text-align: center;
+      font-weight: 600;
+    }
+    footer.site-footer p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    footer.site-footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    footer.site-footer .social a {
+      background: var(--primary);
+      padding: 0.8rem 1.1rem;
+      border-radius: 50%;
+      color: var(--accent-light);
+      font-weight: 900;
+      font-size: 1.3rem;
+      transition: background-color 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    footer.site-footer .social a:hover, footer.site-footer .social a:focus {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      transform: scale(1.15);
+      box-shadow: 0 8px 20px var(--accent-light);
+      outline: none;
+    }
+
+    /* Features Section */
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.feature-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.feature-card i {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: var(--primary-dark);
+}
+
+.feature-card p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
+    /* Dropdown */
+    nav ul li.dropdown { position: relative; }
+    nav ul li.dropdown .dropdown-menu {
+      position: absolute; top: 100%; left: 0;
+      background: var(--background);
+      border-radius: 6px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      list-style: none; min-width: 160px;
+      padding: 0.5rem 0; display: none;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    nav ul li.dropdown .dropdown-menu.show { display: block; opacity: 1; }
+    nav ul li.dropdown .dropdown-menu li a {
+      display: block; padding: 0.75rem 1.3rem;
+      color: var(--text-primary); font-weight: 600;
+    }
+    nav ul li.dropdown .dropdown-menu li a:hover { background: var(--accent-light); color: var(--primary-dark); }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Primary navigation">
+      <a href="#hero" class="logo" aria-label="Stackly Home">
+        <img src="assets/logo/logo.png" alt="Stackly Logo" />
+        <span>Stackly</span>
+      </a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li class="dropdown">
+          <ul class="dropdown-menu" id="home-dropdown" aria-label="submenu" hidden>
+          </ul>
+        </li>
+        <li><a href="homepage2.html">Home</a></li>
+        <li><a href="about2.html">About</a></li>
+        <li><a href="services2.html">Services</a></li>
+        <li><a href="saas2.html"  class="active">SaaS</a></li>
+        <li><a href="404.html">Digital Agency</a></li>
+        <li><a href="404.html">Contact</a></li>
+        <li><a href="404.html">Buy Now</a></li>
+      </ul>
+      <a href="login.html" class="btn-login" tabindex="0">Login/Register</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <section class="saas-hero" id="hero">
+      <h1>Stackly SaaS Solutions</h1>
+      <p>Cloud-based software tailored for businesses that demand performance, scalability, and simplicity.</p>
+      <a href="#pricing" class="cta-btn">Get Started</a>
+    </section>
+
+<section class="features">
+  <div class="feature-card">
+    <i class="fas fa-cloud"></i>
+    <h3>Cloud Native</h3>
+    <p>Always available, always scalable—without infrastructure headaches.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-lock"></i>
+    <h3>Secure</h3>
+    <p>Enterprise-grade security and compliance baked in from day one.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-bolt"></i>
+    <h3>Fast Performance</h3>
+    <p>Optimized for speed and efficiency, no matter the workload.</p>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-users"></i>
+    <h3>User Friendly</h3>
+    <p>Intuitive design that teams love to adopt and use daily.</p>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <h2 class="section-title">Pricing Plans</h2>
+  <p class="section-subtitle">Choose a plan that fits your needs</p>
+  <div class="pricing-grid">
+    
+    <div class="pricing-card">
+      <h3>Starter</h3>
+      <div class="price">$19<span>/mo</span></div>
+      <ul>
+        <li>Basic Features</li>
+        <li>5 Projects</li>
+        <li>Email Support</li>
+      </ul>
+      <a href="#" class="cta-btn">Choose Plan</a>
+    </div>
+
+    <div class="pricing-card highlight">
+      <h3>Growth</h3>
+      <div class="price">$49<span>/mo</span></div>
+      <ul>
+        <li>All Starter Features</li>
+        <li>Unlimited Projects</li>
+        <li>Priority Support</li>
+      </ul>
+      <a href="#" class="cta-btn">Most Popular</a>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Enterprise</h3>
+      <div class="price">Custom</div>
+      <ul>
+        <li>Dedicated Solutions</li>
+        <li>Advanced Security</li>
+        <li>24/7 Support</li>
+      </ul>
+      <a href="#" class="cta-btn">Contact Us</a>
+    </div>
+
+  </div>
+</section>
+
+    <section class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial">“Stackly SaaS transformed our operations. Scalable and simple.” <strong>— Alex R.</strong></div>
+      <div class="testimonial">“Reliable, fast, and secure. Exactly what we needed.” <strong>— Priya M.</strong></div>
+      <div class="testimonial">“Their SaaS tools grew with our business seamlessly.” <strong>— James L.</strong></div>
+    </section>
+
+    <section class="saas-hero">
+      <h2>Ready to Scale Your Business?</h2>
+      <p>Adopt Stackly SaaS solutions and future-proof your workflows with innovation and security.</p>
+      <a href="contact.html" class="cta-btn">Request Demo</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Stackly. All rights reserved.</p>
+    <div class="social">
+      <a href="mailto:info@stackly.com" aria-label="Email">✉️</a>
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="Twitter">🐦</a>
+      <a href="#" aria-label="Facebook">f</a>
+      <a href="#" aria-label="Instagram">📸</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.getElementById('home-dropdown');
+    dropdownToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+      dropdownToggle.setAttribute('aria-expanded', !expanded);
+      dropdownMenu.classList.toggle('show');
+      dropdownMenu.hidden = expanded;
+    });
+    document.addEventListener('click', (e) => {
+      if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownToggle.setAttribute('aria-expanded', false);
+        dropdownMenu.classList.remove('show');
+        dropdownMenu.hidden = true;
+      }
+    });
+
+    const progressBar = document.querySelector('.scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+
+    // Dark mode toggle button
+    const darkToggle = document.createElement('button');
+    darkToggle.textContent = '🌙';
+    Object.assign(darkToggle.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      zIndex: '2000',
+      padding: '0.5rem',
+      borderRadius: '50%',
+      border: 'none',
+      cursor: 'pointer',
+      backgroundColor: 'var(--primary)',
+      color: 'white',
+      fontSize: '1.2rem',
+    });
+    document.body.appendChild(darkToggle);
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
