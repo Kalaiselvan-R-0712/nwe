@@ -814,3 +814,97 @@ footer a:focus {
     margin-top: 0.4rem;
   }
 }
+
+/* Make navbar sticky */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff; /* adjust for dark mode if needed */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Prevent content hiding behind navbar */
+body {
+  padding-top: 70px; /* adjust to navbar height */
+}
+
+/* Active nav highlight */
+.nav-links a.active {
+  color: #0077cc; /* highlight color */
+  font-weight: bold;
+  border-bottom: 2px solid #0077cc;
+}
+
+/* Responsive fixes */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  margin: 4px 0;
+  transition: 0.3s;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: #fff;
+    padding: 1rem;
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+        nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a, nav ul li button.dropdown-toggle {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--skyblue);
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    nav ul li a:hover, nav ul li a:focus,
+    nav ul li button.dropdown-toggle:hover,
+    nav ul li button.dropdown-toggle:focus,
+    nav ul li a.active {
+      border-bottom-color: var(--accent-light);
+      color: var(--accent-light);
+      outline: none;
+    }

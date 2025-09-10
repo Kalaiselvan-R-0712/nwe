@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SaaS Solutions | Stackly</title>
-  <meta name="description" content="Explore Stackly SaaS solutions – scalable, secure, and user-friendly software designed to accelerate your business growth." />
+  <title>Stackly | Bespoke Legal Solutions</title>
+  <meta name="description" content="Stackly Law Firm – trusted legal advisors in corporate law, litigation, and compliance." />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -49,6 +49,153 @@
       height: 4px; background: var(--accent);
       width: 0; z-index: 2000;
     }
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(11, 61, 145, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      color: var(--white);
+      transition: background 0.3s, box-shadow 0.3s;
+      z-index: 1000;
+    }
+    header.scrolled { background: var(--primary-dark); }
+    .navbar {
+      max-width: 1200px; margin: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .logo { display: flex; align-items: center; font-family: var(--font-heading); font-size: 1.9rem; font-weight: 700; color: var(--white); gap: 0.7rem; }
+    .logo img { height: 48px; transition: transform 0.3s; }
+    .logo:hover img { transform: scale(1.1); }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul li a {
+      font-weight: 600; font-size: 1rem; color: var(--white);
+      transition: color 0.3s;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus,
+    nav ul li a.active { color: var(--accent-light); }
+
+    .btn-login {
+      background: var(--accent); color: var(--white);
+      font-weight: 700; padding: 0.5em 1.5em;
+      border-radius: 40px; font-size: 0.95rem;
+      border: none; cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .btn-login:hover { background: var(--accent-light); color: var(--primary-dark); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+    .hamburger span { width: 26px; height: 3px; background: var(--white); border-radius: 3px; transition: transform 0.35s, opacity 0.35s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    @media (max-width: 900px) {
+      nav ul {
+        display: none; position: fixed; top: 64px; right: 0;
+        background: var(--background);
+        flex-direction: column; width: 280px;
+        padding: 2rem 1.5rem; height: 100vh;
+        transform: translateX(100%); transition: transform 0.3s ease;
+      }
+      nav ul.open { display: flex; transform: translateX(0); }
+      .btn-login { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    main { margin: 0 auto; max-width: 1100px; padding: 6rem 1.5rem 6rem; flex-grow: 1; }
+
+    /* Hero */
+    .agency-hero {
+      background: linear-gradient(135deg, rgba(11,61,145,0.9), rgba(1,151,246,0.8));
+      color: #fff; text-align: center; padding: 5rem 2rem;
+      border-radius: 12px; margin-bottom: 3rem;
+    }
+    .agency-hero h1 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem; }
+    .agency-hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; }
+    .agency-hero .cta-btn {
+      background: var(--accent); color: var(--white);
+      font-size: 1.1rem; font-weight: 700;
+      padding: 0.7em 2em; border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .agency-hero .cta-btn:hover { background: var(--accent-light); color: var(--primary-dark); }
+
+    /* Services */
+    .services { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; margin: 3rem 0; }
+    .service-card {
+      background: var(--white); padding: 2rem; border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08); text-align: center;
+    }
+    .service-card i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+    .service-card h3 { font-family: var(--font-heading); margin-bottom: 0.8rem; }
+
+    /* Portfolio */
+    .portfolio { margin: 3rem 0; }
+    .portfolio h2 { text-align: center; margin-bottom: 2rem; font-size: 2rem; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
+    .portfolio-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s; }
+    .portfolio-item img { width: 100%; display: block; }
+    .portfolio-item:hover { transform: translateY(-6px); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(75,101,132,0.95), rgba(11,61,145,0.95));
+      color: #fff; text-align: center; padding: 3rem 2rem; border-radius: 12px; margin-top: 4rem;
+    }
+    .cta-section h2 { font-family: var(--font-heading); margin-bottom: 1rem; font-size: 2rem; }
+    .cta-section p { margin-bottom: 1.5rem; }
+    .cta-section .cta-btn {
+      background: var(--accent); padding: 0.8rem 2rem; border-radius: 6px; color: #fff; font-weight: 700; transition: background 0.3s;
+    }
+    .cta-section .cta-btn:hover { background: var(--accent-light); color: var(--primary-dark); }
+
+    /* Footer */
+    footer.site-footer {
+      background: var(--primary-dark);
+      padding: 3rem 1.5rem;
+      color: var(--accent-light);
+      text-align: center;
+      font-weight: 600;
+    }
+    footer.site-footer p { margin-bottom: 1.5rem; font-size: 1rem; }
+    footer.site-footer .social { display: flex; justify-content: center; gap: 1.5rem; }
+    footer.site-footer .social a {
+      background: var(--primary);
+      padding: 0.8rem 1.1rem;
+      border-radius: 50%;
+      color: var(--accent-light);
+      font-size: 1.3rem;
+      transition: background 0.3s, transform 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+    }
+    footer.site-footer .social a:hover { background: var(--accent-light); color: var(--primary-dark); transform: scale(1.15); }
+
+    /* Services */
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+/* Portfolio */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .services,
+  .portfolio-grid {
+    grid-template-columns: 1fr; /* stack on small screens */
+  }
+}
 
     /* Header */
     header {
@@ -342,7 +489,8 @@
       color: var(--text-primary); font-weight: 600;
     }
     nav ul li.dropdown .dropdown-menu li a:hover { background: var(--accent-light); color: var(--primary-dark); }
-  </style>
+
+</style>
 </head>
 <body>
   <div class="scroll-progress"></div>
@@ -366,9 +514,9 @@
         <li><a href="about2.html">About</a></li>
         <li><a href="services2.html">Services</a></li>
         <li><a href="saas2.html"  class="active">SaaS</a></li>
-        <li><a href="404.html">Digital Agency</a></li>
-        <li><a href="404.html">Contact</a></li>
-        <li><a href="404.html">Buy Now</a></li>
+        <li><a href="digitalagency2.html">Digital Agency</a></li>
+        <li><a href="contact2.html">Contact</a></li>
+        <li><a href="buynow2.html">Buy Now</a></li>
       </ul>
       <a href="login.html" class="btn-login" tabindex="0">Login/Register</a>
     </nav>
@@ -456,7 +604,7 @@
     <section class="saas-hero">
       <h2>Ready to Scale Your Business?</h2>
       <p>Adopt Stackly SaaS solutions and future-proof your workflows with innovation and security.</p>
-      <a href="contact.html" class="cta-btn">Request Demo</a>
+      <a href="contact2.html" class="cta-btn">Request Demo</a>
     </section>
   </main>
 
@@ -482,24 +630,6 @@
     hamburger.addEventListener('click', () => {
       const open = hamburger.classList.toggle('open');
       navLinks.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-    });
-
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
-    const dropdownMenu = document.getElementById('home-dropdown');
-    dropdownToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
-      dropdownToggle.setAttribute('aria-expanded', !expanded);
-      dropdownMenu.classList.toggle('show');
-      dropdownMenu.hidden = expanded;
-    });
-    document.addEventListener('click', (e) => {
-      if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-        dropdownToggle.setAttribute('aria-expanded', false);
-        dropdownMenu.classList.remove('show');
-        dropdownMenu.hidden = true;
-      }
     });
 
     const progressBar = document.querySelector('.scroll-progress');
@@ -508,7 +638,7 @@
       progressBar.style.width = scrolled + '%';
     });
 
-    // Dark mode toggle button
+    // Dark mode floating button
     const darkToggle = document.createElement('button');
     darkToggle.textContent = '🌙';
     Object.assign(darkToggle.style, {

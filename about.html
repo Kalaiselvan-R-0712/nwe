@@ -59,6 +59,31 @@
       .why-choose {padding:1.1rem;}
       .timeline {padding-left:1.1rem;}
     }
+        nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a, nav ul li button.dropdown-toggle {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    nav ul li a:hover, nav ul li a:focus,
+    nav ul li button.dropdown-toggle:hover,
+    nav ul li button.dropdown-toggle:focus,
+    nav ul li a.active {
+      border-bottom-color: var(--accent-light);
+      color: var(--accent-light);
+      outline: none;
+    }
   </style>
 </head>
 <body>
@@ -72,7 +97,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="about.html"  class="active">About</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="blog.html">Blog</a></li>
@@ -157,7 +182,7 @@
       <p style="font-size:1.12rem;">
         Legal counsel should empower, not overwhelm. Contact us to see how Stackly can protect your interests and help you move forward with confidence.
       </p>
-      <a href="404.html" class="cta-btn"
+      <a href="contact.html" class="cta-btn"
         style="display:inline-block;background:#28416f;color:#fff;font-size:1.12rem;font-weight:700;padding:0.65em 2em;margin:1.1em 0 1.3em 0;border-radius:6px;text-decoration:none;">Contact Stackly</a>
     </section>
   </main>

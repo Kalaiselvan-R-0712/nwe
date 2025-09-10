@@ -121,3 +121,29 @@ if (dropdownToggle && dropdownMenu) {
     });
   });
 }
+
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll("main section[id]");
+const navItems = document.querySelectorAll(".nav-links a");
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+
+        // Remove old active states
+        navItems.forEach(link => link.classList.remove("active"));
+
+        // Highlight current one
+        const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
+      }
+    });
+  },
+  { threshold: 0.6 } // when 60% of section is visible
+);
+
+sections.forEach(section => observer.observe(section));
