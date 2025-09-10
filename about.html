@@ -84,6 +84,35 @@
       color: var(--accent-light);
       outline: none;
     }
+
+        /* Responsive Fixes */
+    @media (max-width: 900px) {
+      header.scrolled .navbar {
+        padding: 0.8rem 1rem;
+      }
+      nav ul {
+        width: 260px;
+      }
+      nav ul li a {
+        font-size: 1.1rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .section.split {
+        grid-template-columns: 1fr;
+      }
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 400px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
