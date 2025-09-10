@@ -7,7 +7,6 @@
   <meta name="description" content="Stackly - Trusted legal expertise for corporate and individual clients. Your partner in real estate, litigation, corporate law, and immigration." />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset and variables */
     :root {
       --primary: #0b3d91;
       --primary-dark: #062d6c;
@@ -22,6 +21,159 @@
       --font-body: 'Inter', sans-serif;
     }
     *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--text-primary);
+      background: var(--background);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background: var(--background-dark);
+      color: var(--white);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover, a:focus {
+      color: var(--primary);
+    }
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px;
+      background: var(--accent);
+      width: 0;
+      z-index: 2000;
+      transition: width 0.25s ease-out;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(11, 61, 145, 0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      color: var(--white);
+      transition: background-color 0.3s, box-shadow 0.3s;
+      z-index: 1000;
+    }
+    header.scrolled {
+      background: var(--primary-dark);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: var(--font-heading);
+      font-size: 1.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      gap: 0.7rem;
+      color: var(--white);
+    }
+    .logo img {
+      height: 48px;
+      transition: transform 0.3s;
+    }
+    .logo:hover img {
+      transform: scale(1.1);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li a,
+    nav ul li button.dropdown-toggle {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+      padding-bottom: 3px;
+      border-bottom: 3px solid transparent;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    /* Highlight: active state on Home parent */
+    nav ul li button.dropdown-toggle.active {
+      border-bottom-color: var(--accent-light);
+      color: var(--accent-light);
+      outline: none;
+    }
+    nav ul li a:hover, nav ul li a:focus,
+    nav ul li button.dropdown-toggle:hover,
+    nav ul li button.dropdown-toggle:focus {
+      border-bottom-color: var(--accent-light);
+      color: var(--accent-light);
+      outline: none;
+    }
+    /* Highlight: active in dropdown */
+    nav ul li .dropdown-menu li a.active {
+      background: var(--accent-light);
+      color: var(--primary-dark);
+    }
+    .btn-login {
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 700;
+      padding: 0.5em 1.5em;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .btn-login:hover, .btn-login:focus {
+      background-color: var(--accent-light);
+      box-shadow: 0 0 10px var(--accent-light);
+      color: var(--primary-dark);
+      outline: none;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: var(--white);
+      border-radius: 3px;
+      transition: transform 0.35s, opacity 0.35s;
+    }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+        *, *::before, *::after {
       margin: 0; padding: 0; box-sizing: border-box;
     }
     body {
@@ -689,32 +841,87 @@
       box-shadow: 0 14px 42px rgba(0, 59, 119, 0.6);
       outline: none;
     }
-
-            nav ul {
+    /* Dropdown styles */
+    nav ul li.dropdown {
+      position: relative;
+    }
+    nav ul li.dropdown .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--background);
+      border-radius: 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       list-style: none;
-      display: flex;
-      gap: 2rem;
+      min-width: 160px;
+      z-index: 1100;
+      padding: 0.5rem 0;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    nav ul li a, nav ul li button.dropdown-toggle {
+    nav ul li.dropdown .dropdown-menu.show {
+      display: block;
+      opacity: 1;
+    }
+    nav ul li.dropdown .dropdown-menu li a {
+      display: block;
+      padding: 0.75rem 1.3rem;
+      color: var(--text-primary);
       font-weight: 600;
-      font-size: 1rem;
-      color: var(--yellow);
-      padding-bottom: 3px;
-      border-bottom: 3px solid transparent;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      transition: border-color 0.3s, color 0.3s;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
     }
-    nav ul li a:hover, nav ul li a:focus,
-    nav ul li button.dropdown-toggle:hover,
-    nav ul li button.dropdown-toggle:focus,
-    nav ul li a.active {
-      border-bottom-color: var(--accent-light);
-      color: var(--accent-light);
+    nav ul li.dropdown .dropdown-menu li a:hover,
+    nav ul li.dropdown .dropdown-menu li a:focus {
+      background: var(--accent-light);
+      color: var(--primary-dark);
       outline: none;
     }
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        position: fixed;
+        top: 64px; right: 0;
+        background: var(--background);
+        flex-direction: column;
+        width: 280px;
+        padding: 2rem 1.5rem;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+        height: 100vh;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        z-index: 1050;
+      }
+      nav ul.open {
+        display: flex;
+        transform: translateX(0);
+      }
+      .btn-login {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      nav ul li.dropdown .dropdown-menu {
+        position: relative;
+        box-shadow: none;
+        background: transparent;
+        padding-left: 1rem;
+      }
+      nav ul li.dropdown .dropdown-menu li a {
+        color: var(--primary-dark);
+        padding-left: 2rem;
+        background: transparent;
+      }
+      nav ul li.dropdown .dropdown-menu li a:hover,
+      nav ul li.dropdown .dropdown-menu li a:focus {
+        background: var(--accent-light);
+        color: var(--primary-dark);
+      }
+    }
+    /* ...rest of your CSS remains unchanged... */
   </style>
 </head>
 <body>
@@ -730,12 +937,12 @@
       </button>
       <ul class="nav-links" id="nav-menu">
         <li class="dropdown">
-          <button class="dropdown-toggle" aria-expanded="false" aria-controls="home-dropdown" aria-haspopup="true"  class="active" aria-current="page">
+          <button class="dropdown-toggle active" aria-expanded="false" aria-controls="home-dropdown" aria-haspopup="true">
             Home
           </button>
           <ul class="dropdown-menu" id="home-dropdown" aria-label="submenu" hidden>
             <li><a href="index.html">Home 1</a></li>
-            <li><a href="homepage2.html">Home 2</a></li>
+            <li><a href="homepage2.html" class="active">Home 2</a></li>
           </ul>
         </li>
         <li><a href="about2.html">About</a></li>
@@ -835,7 +1042,7 @@
     <section id="consultation" class="section cta-banner fade-section">
       <h3>Online Legal Consultation</h3>
       <p>Consult with us via email or secure video conference – within two business days.</p>
-        <a href="contact2.html" class="cta-btn">Book Now</a>
+        <a href="buynow2.html" class="cta-btn">Book Now</a>
     </section>
     <section id="contact" class="section contact fade-section">
       <h2 class="center">Stay Connected</h2>
